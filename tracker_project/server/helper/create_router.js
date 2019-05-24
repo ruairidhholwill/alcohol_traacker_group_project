@@ -21,8 +21,13 @@ const createRouter = function (collection) {
 
   router.post('/', (req, res) => {
     const newData = req.body;
+    const newTime = new Date()
+    const combinedData = Object.assign(newData, newTime)
+    console.log('date stamp added:', combinedData);
+    
     collection
       .insertOne(newData)
+      //$setOnInsert: { dateAdded: new Date() }
       .then(() => collection.find().toArray())
       .then((docs) => res.json(docs));
   });
