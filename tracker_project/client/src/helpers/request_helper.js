@@ -32,4 +32,5 @@ const RequestHelper = function (url) {
       .then((response) => response.json());
   };
   
+
   module.exports = RequestHelper;

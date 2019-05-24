@@ -1,0 +1,1 @@
+//here we will display all the details in graphics.
