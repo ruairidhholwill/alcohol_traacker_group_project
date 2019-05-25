@@ -1,7 +1,8 @@
 const PubSub = require('../helpers/pub_sub.js')
 
-const FormView = function (container) {
-    this.container = container;
+const FormView = function (formContainer, sizeContainer) {
+    this.formContainer = formContainer;
+    this.sizeContainer = sizeContainer;
 }
 
 FormView.prototype.bindEvents = function () {
@@ -9,18 +10,38 @@ FormView.prototype.bindEvents = function () {
         console.log('formView', event.detail)
         this.createSizeSelectors(event.detail);
     })
+
+    this.formContainer.addEventListener('submit', (event) => {
+      newDrink = this.createDrinkInfo(event.target);
+      console.log(newDrink)
+    })
 }
 
 FormView.prototype.createSizeSelectors = function (sizes) {
-    this.container.innerHTML = '';
+    this.sizeContainer.innerHTML = '';
     sizes.forEach((size) => {
         const sizeSelect = document.createElement('input');
         sizeSelect.type = 'radio';
         sizeSelect.name = 'size';
         sizeSelect.value = size;
-        this.container.appendChild(sizeSelect)
+        this.sizeContainer.appendChild(sizeSelect)
         console.log(sizeSelect.value)
     })
 }
+
+FormView.prototype.createDrinkInfo = function (form) {
+  if (form.pence.value.length === 1) {
+    form.pence.value = '0' + form.pence.value;
+  }
+  const price = `${form.pounds.value}.${form.pence.value}`
+
+  const newDrink = {
+    drinkType: form.drink.value,
+    drinkSize: form.size.value,
+    price: price
+  }
+
+  return newDrink;
+};
 
 module.exports = FormView;

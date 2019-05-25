@@ -15,6 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     form.bindEvents();
 
     const sizeContainer = document.querySelector('#size-selection')
-    const formView = new FormView(sizeContainer);
+    const formView = new FormView(formContainer, sizeContainer);
     formView.bindEvents();
 })
