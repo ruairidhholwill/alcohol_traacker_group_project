@@ -1,12 +1,20 @@
-const Form = function (element) {
-    this.element = element;
+const PubSub = require('../helpers/pub_sub.js')
+
+const Form = function (container) {
+    this.container = container;
 }
 
 Form.prototype.bindEvents = function () {
-    this.element.addEventListener('submit', (event) => {
-        const selectedDrink = event.target.drink.value
-        this.selectedDrinkSizeOutput(selectedDrink)
-    })
+    // debugger
+    sizesDefualt = this.selectedDrinkSizeOutput('beer');
+    console.log(sizesDefualt);    
+    PubSub.publish('Form:drink-sizes-ready', sizesDefualt);
+    // this.container.addEventListener('click', (event) => {
+    //     console.log(event.target.value);
+    //     const selectedDrink = event.target.value
+    //     const drinkSizesOutput = this.selectedDrinkSizeOutput(selectedDrink);
+    //     PubSub.publish('Form:drink-sizes-ready', drinkSizesOutput);
+    // })
 }
 
 Form.prototype.selectedDrinkSizeOutput = function (selectedDrink) {
