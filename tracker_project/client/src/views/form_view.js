@@ -1,6 +1,7 @@
 const PubSub = require('../helpers/pub_sub.js')
+const UnitHelper = require('../helpers/unit_helper.js')
 
-const FormView = function (formContainer, sizeContainer) {
+ FormView = function (formContainer, sizeContainer) {
     this.formContainer = formContainer;
     this.sizeContainer = sizeContainer;
 }
@@ -14,6 +15,8 @@ FormView.prototype.bindEvents = function () {
     this.formContainer.addEventListener('submit', (event) => {
       newDrink = this.createDrinkInfo(event.target);
       console.log(newDrink)
+      // const unit = new UnitHelper(newDrink.drinkType, newDrink.drinkSize);
+      // console.log(unit.sizeToUnits())
     })
 }
 
@@ -35,9 +38,13 @@ FormView.prototype.createDrinkInfo = function (form) {
   }
   const price = `${form.pounds.value}.${form.pence.value}`
 
+  let drinkUnits = new UnitHelper(form.drink.value, form.size.value);
+  drinkUnits = drinkUnits.sizeToUnits();
+
   const newDrink = {
     drinkType: form.drink.value,
     drinkSize: form.size.value,
+    drinkUnits: drinkUnits,
     price: price
   }
 
