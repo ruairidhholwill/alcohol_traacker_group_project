@@ -10,6 +10,8 @@
 
 //const Booze = require('../models/booze.js')
 const PubSub = require('../helpers/pub_sub.js');
+const DrinkView = require('../views/drink_view.js');
+
 
 
 const DrinksListView = function(container){
@@ -24,10 +26,9 @@ DrinksListView.prototype.bindEvents = function(){
 }
 
 DrinksListView.prototype.render = function(drinks){
-drinks.forEach((drink)=>{
-    console.log('d', drink.drinkType)
-})
-
+const drinkView = new DrinkView(this.container);
+    drinks.forEach((drink) => drinkView.render(drink));
+    // console.log('d', drink.drinkType)
 
 }
 
