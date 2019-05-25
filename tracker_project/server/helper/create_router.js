@@ -24,9 +24,11 @@ const createRouter = function (collection) {
     const newTime = new Date()
     const combinedData = Object.assign(newData, newTime)
     console.log('date stamp added:', combinedData);
+    // Test in Insomnia
+    // Add date stamp in new data object
     
     collection
-      .insertOne(newData)
+      .insertOne(combinedData)
       //$setOnInsert: { dateAdded: new Date() }
       .then(() => collection.find().toArray())
       .then((docs) => res.json(docs));
