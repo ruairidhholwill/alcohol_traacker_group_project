@@ -21,8 +21,12 @@ const createRouter = function (collection) {
 
   router.post('/', (req, res) => {
     const newData = req.body;
-    const newTime = new Date()
-    const combinedData = Object.assign(newData, newTime)
+    const newDate = {}
+    newDate.date = new Date()
+      .toString()
+      .substring(4, 15);
+
+    const combinedData = Object.assign(newData, newDate)
     console.log('date stamp added:', combinedData);
     // Test in Insomnia
     // Add date stamp in new data object
