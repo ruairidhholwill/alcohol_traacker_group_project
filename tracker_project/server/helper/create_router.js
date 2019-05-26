@@ -30,7 +30,7 @@ const createRouter = function (collection) {
     console.log('date stamp added:', combinedData);
     // Test in Insomnia
     // Add date stamp in new data object
-    
+
     collection
       .insertOne(combinedData)
       //$setOnInsert: { dateAdded: new Date() }

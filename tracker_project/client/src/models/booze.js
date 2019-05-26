@@ -34,6 +34,11 @@ Booze.prototype.bindEvents = function() {
         this.deleteBooze(event.detail)
         console.log('this.delete:::',event.detail)
     })
+
+    PubSub.subscribe('DrinkView:update_clicked', (event) => {
+      this.findOne(event.detail)
+      console.log('this.find', event.detail)
+    })
 };
 
 
@@ -57,6 +62,13 @@ Booze.prototype.postBooze = function(boozeDetail){
         PubSub.publish('Booze:data-loaded', boozeDetails)
     })
 }
+
+Booze.prototype.findOne = function (drinkID) {
+  this.request.find(drinkID)
+    .then((drink) => {
+      console.log('foundOne', drink)
+    })
+};
 
 Booze.prototype.deleteBooze = function(drinkID){
     console.log('drinkID:::', drinkID)
