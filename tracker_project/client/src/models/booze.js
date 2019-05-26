@@ -19,14 +19,23 @@ const Booze = function (url) {
 };
 
 
+//If you have more than one bindevents the second one will be ignored.
 
-Booze.prototype.bindEvents = function () {
+Booze.prototype.bindEvents = function() {
 
     PubSub.subscribe('BoozeFormView:booze-submitted', (event) => {
+        console.log('event', event)
         this.postBooze(event.detail)
-        console.log('Subscribed to:', event.detail);
+        console.log('post booze Subscribed to:', event.detail);
+    })
+
+    PubSub.subscribe('DrinkView:delete_clicked', (event) =>{
+        this.deleteBooze(event.detail)
+        console.log('this.delete:::',event.detail)
     })
 };
+
+
 
 Booze.prototype.getData = function(){
     this.request.get()
@@ -39,13 +48,22 @@ Booze.prototype.getData = function(){
 }
 
 Booze.prototype.postBooze = function(boozeDetail){
-    console.log('boozeDetails', boozeDetail)
+    console.log('post boozeDetails', boozeDetail)
     this.request.post(boozeDetail)
     .then((boozeDetails)=>{
         PubSub.publish('Booze:data-loaded', boozeDetails)
     })
 }
 
+Booze.prototype.deleteBooze = function(drinkID){
+    console.log('drinkID:::', drinkID)
+    this.request.delete(drinkID)
+        .then((drink)=>{
+            PubSub.publish('Booze:data-loaded', drink)
+            console.log('Booze:data-loaded::', drink)
+        })
+        .catch(console.error)
+}
 
 
 

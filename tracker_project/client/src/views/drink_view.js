@@ -28,6 +28,11 @@ DrinkView.prototype.render = function(drink){
     const price = this.createHeading(drink.price)
     drinkContainer.appendChild(price);
 
+    const deleteButton = this.createDeleteButton(drink._id)
+    //console.log('id',drink._id )
+    deleteButton.innerHTML = 'Delete me'
+    drinkContainer.appendChild(deleteButton)
+
 
 
     this.container.appendChild(drinkContainer)
@@ -39,4 +44,19 @@ DrinkView.prototype.createHeading = function(textContent) {
     return heading;
 }
 
+
+DrinkView.prototype.createDeleteButton = function(drinkID){
+    const button = document.createElement("button");
+    button.classList.add('delete-btn')
+   // console.log('drinkID', drinkID)
+    button.value = drinkID;
+    button.addEventListener('click', (event)=>{
+        PubSub.publish('DrinkView:delete_clicked', button.value);
+        console.log('DrinkView:delete_clicked:::', button.value);
+        
+    })
+    return button;
+}
+
 module.exports = DrinkView;
+

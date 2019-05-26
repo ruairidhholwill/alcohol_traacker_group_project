@@ -26,6 +26,8 @@ const RequestHelper = function (url) {
   }
   
   RequestHelper.prototype.delete = function (id) {
+    console.log('xxxxx',`${this.url}/${id}`);
+    
     return fetch(`${this.url}/${id}`, {
       method: 'DELETE'
     })
@@ -34,3 +36,5 @@ const RequestHelper = function (url) {
   
 
   module.exports = RequestHelper;
+
+  

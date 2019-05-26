@@ -30,9 +30,12 @@ BoozeFormView.prototype.handleSubmit = function (event) {
     //console.log('event:', event.target.size.value);
     const newBooze = this.createBooze(event.target);
     PubSub.publish('BoozeFormView:booze-submitted', newBooze)
+    console.log('BoozeFormView:booze-submitted', newBooze)
+
     
     event.target.reset()// This resets the form fields to empty.
 };
+
 
 
 //This function is called by the 'handleSubmit' function above and formats the data as required by the database.
@@ -45,7 +48,7 @@ BoozeFormView.prototype.createBooze = function (form) {
         drinkSize: form.size.value
     
     }
-    //console.log(newBooze)
+    console.log('new booze', newBooze)
     return newBooze;
     
 };
