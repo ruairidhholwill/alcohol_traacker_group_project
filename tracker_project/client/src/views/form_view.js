@@ -1,5 +1,6 @@
 const PubSub = require('../helpers/pub_sub.js')
 const UnitHelper = require('../helpers/unit_helper.js')
+const Form = require('../models/form.js')
 
  FormView = function (formContainer, sizeContainer) {
     this.formContainer = formContainer;
@@ -7,6 +8,9 @@ const UnitHelper = require('../helpers/unit_helper.js')
 }
 
 FormView.prototype.bindEvents = function () {
+    // document.getElementById("wine").checked = true;
+    this.renderDrinkSizeDefaults();
+
     PubSub.subscribe('Form:drink-sizes-ready', (event) => {
         console.log('formView', event.detail)
         this.createSizeSelectors(event.detail);
@@ -21,6 +25,13 @@ FormView.prototype.bindEvents = function () {
       // console.log(unit.sizeToUnits())
     })
 }
+
+FormView.prototype.renderDrinkSizeDefaults = function () {
+  const form = new Form();
+  const sizeDefaults = form.selectedDrinkSizeOutput('beer')
+  console.log(sizeDefaults)
+  this.createSizeSelectors(sizeDefaults)
+};
 
 FormView.prototype.createSizeSelectors = function (sizes) {
     this.sizeContainer.innerHTML = '';

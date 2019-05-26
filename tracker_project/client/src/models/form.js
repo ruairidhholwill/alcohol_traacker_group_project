@@ -5,10 +5,7 @@ const Form = function (container) {
 }
 
 Form.prototype.bindEvents = function () {
-    // debugger
-    sizesDefualt = this.selectedDrinkSizeOutput('beer');
-    console.log(sizesDefualt);
-    PubSub.publish('Form:drink-sizes-ready', sizesDefualt);
+  
     this.container.addEventListener('click', (event) => {
         console.log(event.target.value);
         const selectedDrink = event.target.value
