@@ -47,7 +47,7 @@ FormView.prototype.createDrinkInfo = function (form) {
     drinkType: form.drink.value,
     drinkSize: form.size.value,
     drinkUnits: drinkUnits,
-    price: price
+    price: parseFloat(price)
   }
 
   return newDrink;
