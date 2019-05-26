@@ -12,8 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const settings = new Settings(settingsUrl)
     settings.bindEvents()
 
+    const settingsButtonElement = document.querySelector('#settings-btn');
     const settingsContainer = document.querySelector('#settings-form');
-    const settingsView = new SettingsView(settingsContainer);
+    const settingsView = new SettingsView(settingsButtonElement, settingsContainer);
     settingsView.bindEvents();
 
     const formContainer = document.querySelector('#form-div');

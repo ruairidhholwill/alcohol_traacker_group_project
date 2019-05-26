@@ -66,7 +66,8 @@ Booze.prototype.postBooze = function(boozeDetail){
 Booze.prototype.findOne = function (drinkID) {
   this.request.find(drinkID)
     .then((drink) => {
-      console.log('foundOne', drink)
+      // console.log('foundOne', drink)
+      PubSub.publish('Booze:found-drink-ready', drink)
     })
 };
 
