@@ -6,9 +6,7 @@ const DrinksListView = require('./views/drinks_list_view.js')
 document.addEventListener('DOMContentLoaded', () => {
     console.log('JavaScript Loaded')
 
-    const formContainer = document.querySelector('#form-div')
-    
-    })
+    const formContainer = document.querySelector('#form-div');
 
     const drinkContainerSelect = document.querySelector('div#drink-type-selection')
     const form = new Form(drinkContainerSelect);
