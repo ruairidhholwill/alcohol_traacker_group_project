@@ -6,7 +6,7 @@
 // get data function
     //returns data to the view.
 
-//listening for form submit 
+//listening for form submit
     //then post function to the db
     //then delete function to the db
     //then update function to the db
@@ -16,6 +16,7 @@ const PubSub = require('../helpers/pub_sub.js')
 const Booze = function (url) {
     this.url = url;
     this.request = new RequestHelper(this.url)
+    this.allData = []
 };
 
 
@@ -42,6 +43,8 @@ Booze.prototype.getData = function(){
         .then((boozeDetails) =>{
             PubSub.publish('Booze:data-loaded', boozeDetails)
             console.log('published to :', boozeDetails)
+            this.allData = boozeDetails;
+            this.calcTotalSpent();
         })
         .catch(console.error)
 
@@ -65,6 +68,15 @@ Booze.prototype.deleteBooze = function(drinkID){
         .catch(console.error)
 }
 
+Booze.prototype.calcTotalSpent = function () {
+  let total = 0
+  const drinkSum = this.allData.forEach((drink) =>{
+    total += drink.price;
+  })
+
+  console.log(total)
+  return total
+};
 
 
 
