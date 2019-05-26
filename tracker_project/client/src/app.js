@@ -7,10 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('JavaScript Loaded')
 
     const formContainer = document.querySelector('#form-div')
-    formContainer.addEventListener('submit', (event) => {
-        event.preventDefault()
-        console.log(event.target.drink)
-    })
 
     const drinkContainerSelect = document.querySelector('div#drink-type-selection')
     const form = new Form(drinkContainerSelect);
