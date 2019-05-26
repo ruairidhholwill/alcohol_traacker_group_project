@@ -1,23 +1,32 @@
+const Form = require('./models/form.js')
 const FormView = require('./views/form_view.js')
 const Booze = require('./models/booze.js');
 const DrinksListView = require('./views/drinks_list_view.js')
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('JS loaded');
+    console.log('JavaScript Loaded')
 
-const boozeForm = document.querySelector('form#booze-form');
-const boozeFormView = new FormView(boozeForm);
-boozeFormView.bindEvents();
+    const formContainer = document.querySelector('#form-div')
+    formContainer.addEventListener('submit', (event) => {
+        event.preventDefault()
+        console.log(event.target.drink)
+    })
 
-const drinksContainer = document.querySelector('div#listView')
-const drinksListView = new DrinksListView(drinksContainer);
-drinksListView.bindEvents();
+    const drinkContainerSelect = document.querySelector('div#drink-type-selection')
+    const form = new Form(drinkContainerSelect);
+    form.bindEvents();
 
-const url = 'http://localhost:3000/api/booze';
-const booze = new Booze(url);
+    const sizeContainer = document.querySelector('#size-selection')
+    const formView = new FormView(formContainer, sizeContainer);
+    formView.bindEvents();
 
-booze.bindEvents();
-booze.getData()
+    const drinksContainer = document.querySelector('div#listView')
+    const drinksListView = new DrinksListView(drinksContainer);
+    drinksListView.bindEvents();
 
+    const url = 'http://localhost:3000/api/booze';
+    const booze = new Booze(url);
+
+    booze.bindEvents();
+    booze.getData()
 })

@@ -1,26 +1,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"></meta>
-    <script src='/js/bundle.js'></script>
-    <link rel="stylesheet" href="/css/style.css">
+    <script src='js/bundle.js'></script>
+    <link rel="stylesheet" href="css/style.css">
     <title>Booze Tracker</title>
 </head>
 <body>
-    <form id="booze-form">
-        <label for="type">Type:</label>
-        <input type="text" id="type">
-        <label for="size">size:</label>
-        <input type="text" id="size">
-        <input type="submit" value="submit">
+
+   <div id="logo"></div>
 
 
-    </form>
-
-    <div id="listView">
-        <h1>listView</h1>
+   <div id="form-div">
+   <form>
+    <div id="drink-type-selection">
+        <input type="radio" name="drink" value="beer" checked> Beer
+        <input type="radio" name="drink" value="wine"> Wine
+        <input type="radio" name="drink" value="spirits"> Spirits
     </div>
-    
+    <div id="size-selection">
+
+    </div>
+    <div id="price-input">
+        <label for="price-input">Price:</label>
+        <input id="pounds" type="number" min='0'>
+        <input id="pence" type="number" min='0' max='99'>
+    </div>
+
+    <input type="submit" value="Submit">
+   </form>
+   </div>
+
+
+
+   <div id="list-div">
+    <div id="toggle-list"></div>
+    <div id="list-view"></div>
+   </div>
+
+   <div id="tracker-details">
+    <div id="goal"></div>
+    <div id="total-spent"></div>
+    <div id="over-under"></div>
+   </div>
+
 </body>
 </html>
-
-
