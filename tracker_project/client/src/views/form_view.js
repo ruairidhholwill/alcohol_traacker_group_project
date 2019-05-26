@@ -25,11 +25,14 @@ FormView.prototype.bindEvents = function () {
 FormView.prototype.createSizeSelectors = function (sizes) {
     this.sizeContainer.innerHTML = '';
     sizes.forEach((size) => {
+        const sizeLabel = document.createElement('label');
+        sizeLabel.innerHTML = size;
         const sizeSelect = document.createElement('input');
         sizeSelect.type = 'radio';
         sizeSelect.name = 'size';
         sizeSelect.value = size;
         this.sizeContainer.appendChild(sizeSelect)
+        this.sizeContainer.appendChild(sizeLabel)
         console.log(sizeSelect.value)
     })
 }
