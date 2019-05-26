@@ -5,7 +5,7 @@ const Form = function (container) {
 }
 
 Form.prototype.bindEvents = function () {
-  
+
     this.container.addEventListener('click', (event) => {
         console.log(event.target.value);
         const selectedDrink = event.target.value
@@ -25,7 +25,6 @@ Form.prototype.selectedDrinkSizeOutput = function (selectedDrink) {
         const spiritSizes = ['Single', 'Double']
         return spiritSizes;
     }
-
 }
 
 module.exports = Form;

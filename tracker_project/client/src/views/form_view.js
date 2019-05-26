@@ -9,7 +9,7 @@ const Form = require('../models/form.js')
 
 FormView.prototype.bindEvents = function () {
     // document.getElementById("wine").checked = true;
-    this.renderDrinkSizeDefaults();
+    this.renderDrinkSizeDefaults('beer');
 
     PubSub.subscribe('Form:drink-sizes-ready', (event) => {
         console.log('formView', event.detail)
@@ -24,11 +24,16 @@ FormView.prototype.bindEvents = function () {
       // const unit = new UnitHelper(newDrink.drinkType, newDrink.drinkSize);
       // console.log(unit.sizeToUnits())
     })
+
+    PubSub.subscribe('Booze:found-drink-ready', (event) => {
+      this.renderDrinkSizeDefaults(event.detail.drinkType)
+      this.updateFormInputs(event.detail)
+    })
 }
 
-FormView.prototype.renderDrinkSizeDefaults = function () {
+FormView.prototype.renderDrinkSizeDefaults = function (drinkType) {
   const form = new Form();
-  const sizeDefaults = form.selectedDrinkSizeOutput('beer')
+  const sizeDefaults = form.selectedDrinkSizeOutput(drinkType)
   console.log(sizeDefaults)
   this.createSizeSelectors(sizeDefaults)
 };
@@ -39,11 +44,20 @@ FormView.prototype.createSizeSelectors = function (sizes) {
         const sizeSelect = document.createElement('input');
         sizeSelect.type = 'radio';
         sizeSelect.name = 'size';
-        sizeSelect.value = size;
+        sizeSelect.id = size.toLowerCase();
+        sizeSelect.value = size.toLowerCase();
         this.sizeContainer.appendChild(sizeSelect)
         console.log(sizeSelect.value)
     })
 }
+
+FormView.prototype.updateFormInputs = function (drink) {
+  document.getElementById(drink.drinkType).checked = true;
+  document.getElementById(drink.drinkSize).checked = true;
+  document.getElementById('pounds').value = Math.floor(drink.price);
+  document.getElementById('pence').value = drink.price.toString().slice(-2)
+
+};
 
 FormView.prototype.createDrinkInfo = function (form) {
   if (form.pence.value.length === 1) {
@@ -60,7 +74,7 @@ FormView.prototype.createDrinkInfo = function (form) {
     drinkUnits: drinkUnits,
     price: parseFloat(price)
   }
-
+  
   return newDrink;
 };
 
