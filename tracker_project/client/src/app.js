@@ -1,10 +1,20 @@
 const Form = require('./models/form.js')
 const FormView = require('./views/form_view.js')
 const Booze = require('./models/booze.js');
+const Settings = require('./models/settings.js')
 const DrinksListView = require('./views/drinks_list_view.js')
+const SettingsView = require('./views/settings_view.js')
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('JavaScript Loaded')
+
+    const settingsUrl = 'http://localhost:3000/api/settings';
+    const settings = new Settings(settingsUrl)
+    settings.bindEvents()
+
+    const settingsContainer = document.querySelector('#settings-form');
+    const settingsView = new SettingsView(settingsContainer);
+    settingsView.bindEvents();
 
     const formContainer = document.querySelector('#form-div');
 

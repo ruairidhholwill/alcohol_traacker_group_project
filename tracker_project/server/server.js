@@ -19,9 +19,18 @@ MongoClient.connect('mongodb://localhost:27017')
         const boozeRouter = createRouter(boozeCollection);
         app.use('/api/booze', boozeRouter);
     })
-    .catch(console.error) //All the things that don't go through will show up in red.
+    .catch(console.error)
+
+    MongoClient.connect('mongodb://localhost:27017')
+        .then((client)=> {
+            const db = client.db('tracker');
+            const settingCollection = db.collection('settings');
+            const settingRouter = createRouter(settingCollection);
+            app.use('/api/settings', settingRouter);
+        })
+        .catch(console.error)  //All the things that don't go through will show up in red.
 
 app.listen(3000, function (){
     console.log(`listening on port ${this.address().port}`);
-    
+
 })

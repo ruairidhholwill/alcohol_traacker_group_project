@@ -6,7 +6,7 @@
 // get data function
     //returns data to the view.
 
-//listening for form submit 
+//listening for form submit
     //then post function to the db
     //then delete function to the db
     //then update function to the db
