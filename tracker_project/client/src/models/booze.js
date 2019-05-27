@@ -13,25 +13,25 @@
     const RequestHelper = require('../helpers/request_helper.js');
     const PubSub = require('../helpers/pub_sub.js')
     const Settings = require('./settings.js')
-    
+
     const Booze = function (url) {
         this.url = url;
         this.request = new RequestHelper(this.url)
         this.allData = []
         this.savingGoal = 0
     };
-    
-    
+
+
     //If you have more than one bindevents the second one will be ignored.
-    
+
     Booze.prototype.bindEvents = function() {
-    
+
         PubSub.subscribe('BoozeFormView:booze-submitted', (event) => {
             console.log('event', event)
             this.postBooze(event.detail)
             console.log('post booze Subscribed to:', event.detail);
         })
-    
+
         PubSub.subscribe('DrinkView:delete_clicked', (event) =>{
             this.deleteBooze(event.detail)
             console.log('this.delete:::',event.detail)
@@ -41,9 +41,9 @@
             this.displaySavingGoal(event.detail)
         })
     };
-    
-    
-    
+
+
+
     Booze.prototype.getData = function(){
         this.request.get()
             .then((boozeDetails) =>{
@@ -54,9 +54,9 @@
                 this.calculateSavingsOverOrUnder();
             })
             .catch(console.error)
-    
+
     }
-    
+
     Booze.prototype.postBooze = function(boozeDetail){
         console.log('post boozeDetails', boozeDetail)
         this.request.post(boozeDetail)
@@ -64,7 +64,7 @@
             PubSub.publish('Booze:data-loaded', boozeDetails)
         })
     }
-    
+
     Booze.prototype.deleteBooze = function(drinkID){
         console.log('drinkID:::', drinkID)
         this.request.delete(drinkID)
@@ -78,22 +78,23 @@
     Booze.prototype.displaySavingGoal = function () {
         this.savingGoal = event.detail[0].saveAmount
     }
-    
+
     Booze.prototype.calcTotalSpent = function () {
       let total = 0
       const drinkSum = this.allData.forEach((drink) =>{
         total += drink.price;
       })
+      console.log(total)
       return total
     };
-    
+
     Booze.prototype.calculateSavingsOverOrUnder = function () {
         const amountSpent = this.calcTotalSpent()
         const calcSavingsProgress = this.savingGoal - amountSpent
         console.log(calcSavingsProgress)
         return calcSavingsProgress
-        
+
 
     }
-    
+
     module.exports = Booze;
