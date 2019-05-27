@@ -22,20 +22,21 @@ DrinksListView.prototype.bindEvents = function(){
       //console.log('subscibed to:', event);
       this.render(event.detail)
   })
+
+  const hello = document.createElement('h1');
+  hello.textContent = "HELLO"
+  document.getElementById('chart-view').appendChild(hello)
+  document.getElementById('chart-view').style.display = 'none';
+
   const checkboxElement = document.getElementById("list-chart-toggle")
   checkboxElement.addEventListener('click', () => {
     console.log(checkboxElement.checked)
     if (checkboxElement.checked === true) {
-      this.container.innerHTML = ''
-      const hello = document.createElement('h1');
-      hello.textContent = 'HELLO!'
-      this.container.appendChild(hello)
+      document.getElementById('list-view').style.display = 'none';
+      document.getElementById('chart-view').style.display = 'block';
     }else {
-      this.container.innerHTML = ''
-      PubSub.subscribe('Booze:data-loaded', (event)=>{
-          //console.log('subscibed to:', event);
-          this.render(event.detail)
-      })
+      document.getElementById('list-view').style.display = 'block';
+      document.getElementById('chart-view').style.display = 'none';
     }
   })
 }
