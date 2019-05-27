@@ -16,13 +16,13 @@ Form.prototype.bindEvents = function () {
 
 Form.prototype.selectedDrinkSizeOutput = function (selectedDrink) {
     if (selectedDrink === 'beer') {
-        const beerSizes = ['Half Pint', 'Pint', 'Bottle']
+        const beerSizes = ['half pint', 'pint', 'bottle']
         return beerSizes;
     } else if (selectedDrink === 'wine') {
-        const wineSizes = ['Small', 'Medium', 'Large']
+        const wineSizes = ['small', 'medium', 'large']
         return wineSizes;
     } else if (selectedDrink === 'spirits') {
-        const spiritSizes = ['Single', 'Double']
+        const spiritSizes = ['single', 'double']
         return spiritSizes;
     }
 }
