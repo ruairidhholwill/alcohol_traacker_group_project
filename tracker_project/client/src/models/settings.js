@@ -18,11 +18,16 @@ Settings.prototype.getData = function () {
       .then((settingDetails) => {
         PubSub.publish('Settings:data-loaded', settingDetails)
         this.allSettingsData = settingDetails
+        this.displayGoal();
       })
       .catch(console.error)
   }
 
-// Settings.prototype.
+Settings.prototype.displayGoal = function () {
+  const savingGoal = this.allSettingsData[0].saveAmount;
+  console.log('SAVINGS', savingGoal);
+  return savingGoal;
+}
 
 
 Settings.prototype.postSettings = function(settingDetail){
