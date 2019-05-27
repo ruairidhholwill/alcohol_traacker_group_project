@@ -26,7 +26,8 @@ FormView.prototype.bindEvents = function () {
         console.log(updatedDrink)
         PubSub.publish('FormView:updateID-submitted', this.drinkUpdateID);
         PubSub.publish('FormView:update-submitted', updatedDrink);
-
+        this.resetNumberInputs();
+        this.updateMode = false;
       } else {
         newDrink = this.createDrinkInfo(event.target);
         PubSub.publish('BoozeFormView:booze-submitted', newDrink);
@@ -73,6 +74,11 @@ FormView.prototype.updateFormInputs = function (drink) {
   document.getElementById(drink.drinkSize).checked = true;
   document.getElementById('pounds').value = Math.floor(drink.price);
   document.getElementById('pence').value = drink.price.toString().slice(-2)
+};
+
+FormView.prototype.resetNumberInputs = function () {
+  document.getElementById('pounds').value = '0';
+  document.getElementById('pence').value = '00';
 };
 
 FormView.prototype.createDrinkInfo = function (form) {
