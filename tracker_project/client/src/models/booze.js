@@ -103,7 +103,8 @@ Booze.prototype.deleteBooze = function(drinkID){
 };
 
 Booze.prototype.displaySavingGoal = function () {
-  this.savingGoal = event.detail[0].saveAmount
+    this.savingGoal = event.detail[0].saveAmount
+    PubSub.publish('Booze:saving-goal', event.detail[0].saveAmount)
 }
 
 Booze.prototype.calcTotalSpent = function () {
@@ -111,16 +112,15 @@ Booze.prototype.calcTotalSpent = function () {
   const drinkSum = this.allData.forEach((drink) =>{
     total += drink.price;
   })
+  PubSub.publish('Booze:total-spent-calculated', total)
   return total
 };
 
 Booze.prototype.calculateSavingsOverOrUnder = function () {
-  const amountSpent = this.calcTotalSpent()
-  const calcSavingsProgress = this.savingGoal - amountSpent
-  console.log(calcSavingsProgress)
-  return calcSavingsProgress
-
-
+    const amountSpent = this.calcTotalSpent()
+    const calcSavingsProgress = this.savingGoal - amountSpent
+    PubSub.publish('Booze:savings-progress', calcSavingsProgress)
+    return calcSavingsProgress
 }
 
 module.exports = Booze;

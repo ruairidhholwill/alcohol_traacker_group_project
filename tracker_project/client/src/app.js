@@ -4,9 +4,14 @@ const Booze = require('./models/booze.js');
 const Settings = require('./models/settings.js')
 const DrinksListView = require('./views/drinks_list_view.js')
 const SettingsView = require('./views/settings_view.js')
+const ResultsView = require('./views/result_view.js')
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('JavaScript Loaded')
+
+    const resultsContainer = document.querySelector('#tracker-details');
+    resultsView = new ResultsView(resultsContainer);
+    resultsView.bindEvents();
 
     const settingsUrl = 'http://localhost:3000/api/settings';
     const settings = new Settings(settingsUrl)
