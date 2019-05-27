@@ -12,6 +12,15 @@ Settings.prototype.bindEvents = function () {
   })
 }
 
+Settings.prototype.getData = function () {
+    this.request.get()
+      .then((settingDetails) => {
+        PubSub.publish('Settings:data-loaded', settingDetails)
+      })
+      .catch(console.error)
+  }
+
+
 Settings.prototype.postSettings = function(settingDetail){
     // console.log('post boozeDetails', boozeDetail)
     this.request.post(settingDetail)
