@@ -12,10 +12,10 @@ const Form = require('../models/form.js')
 FormView.prototype.bindEvents = function () {
     // document.getElementById("wine").checked = true;
     this.renderDrinkSizeDefaults('beer');
-    console.log(this.updateMode)
+    // console.log(this.updateMode)
 
     PubSub.subscribe('Form:drink-sizes-ready', (event) => {
-        console.log('formView', event.detail)
+        // console.log('formView', event.detail)
         this.createSizeSelectors(event.detail);
     })
 
@@ -23,7 +23,7 @@ FormView.prototype.bindEvents = function () {
       event.preventDefault();
       if (this.updateMode) {
         const updatedDrink = this.createDrinkInfo(event.target);
-        console.log(updatedDrink)
+        // console.log(updatedDrink)
         PubSub.publish('FormView:updateID-submitted', this.drinkUpdateID);
         PubSub.publish('FormView:update-submitted', updatedDrink);
         this.resetNumberInputs();
@@ -31,7 +31,7 @@ FormView.prototype.bindEvents = function () {
       } else {
         newDrink = this.createDrinkInfo(event.target);
         PubSub.publish('BoozeFormView:booze-submitted', newDrink);
-        console.log(newDrink)
+        // console.log(newDrink)
         event.target.reset()//empties the text fields.
         // const unit = new UnitHelper(newDrink.drinkType, newDrink.drinkSize);
         // console.log(unit.sizeToUnits())
@@ -45,15 +45,15 @@ FormView.prototype.bindEvents = function () {
       this.updateFormInputs(event.detail)
       this.updateMode = true;
       this.drinkUpdateID = event.detail._id;
-      console.log(this.updateMode)
-      console.log(this.drinkUpdateID)
+      // console.log(this.updateMode)
+      // console.log(this.drinkUpdateID)
     })
 }
 
 FormView.prototype.renderDrinkSizeDefaults = function (drinkType) {
   const form = new Form();
   const sizeDefaults = form.selectedDrinkSizeOutput(drinkType)
-  console.log(sizeDefaults)
+  // console.log(sizeDefaults)
   this.createSizeSelectors(sizeDefaults)
 };
 
@@ -69,7 +69,7 @@ FormView.prototype.createSizeSelectors = function (sizes) {
         sizeSelect.value = size;
         this.sizeContainer.appendChild(sizeSelect)
         this.sizeContainer.appendChild(sizeLabel)
-        console.log(sizeSelect.value)
+        // console.log(sizeSelect.value)
     })
 }
 
@@ -92,9 +92,9 @@ FormView.prototype.createDrinkInfo = function (form) {
   const price = `${form.pounds.value}.${form.pence.value}`
 
   let drinkUnits = new UnitHelper(form.drink.value, form.size.value);
-  console.log('x', drinkUnits)
+  // console.log('x', drinkUnits)
   drinkUnits = drinkUnits.sizeToUnits();
-  console.log('y', drinkUnits)
+  // console.log('y', drinkUnits)
 
   const newDrink = {
     drinkType: form.drink.value,
@@ -102,7 +102,7 @@ FormView.prototype.createDrinkInfo = function (form) {
     drinkUnits: drinkUnits,
     price: parseFloat(price)
   }
-  console.log(newDrink.drinkUnits)
+  // console.log(newDrink.drinkUnits)
   return newDrink;
 };
 

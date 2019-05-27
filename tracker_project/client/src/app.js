@@ -5,6 +5,7 @@ const Settings = require('./models/settings.js')
 const DrinksListView = require('./views/drinks_list_view.js')
 const SettingsView = require('./views/settings_view.js')
 const ResultsView = require('./views/result_view.js')
+const Results = require('./models/result.js')
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('JavaScript Loaded')
@@ -12,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsContainer = document.querySelector('#tracker-details');
     resultsView = new ResultsView(resultsContainer);
     resultsView.bindEvents();
+
+    const results = new Results()
+    results.bindEvents();
 
     const settingsUrl = 'http://localhost:3000/api/settings';
     const settings = new Settings(settingsUrl)

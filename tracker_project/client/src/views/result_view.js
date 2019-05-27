@@ -6,15 +6,15 @@ const ResultsView = function(container ) {
 
 
 ResultsView.prototype.bindEvents = function () {
-    PubSub.subscribe('Booze:saving-goal', (event) => {
+    PubSub.subscribe('Results:saving-goal', (event) => {
       this.createGoalView(event.detail)
     })
 
-    PubSub.subscribe('Booze:total-spent-calculated', (event) => {
+    PubSub.subscribe('Results:total-spent-calculated', (event) => {
       this.createSpentView(event.detail)
     })
 
-    PubSub.subscribe('Booze:savings-progress', (event) => {
+    PubSub.subscribe('Results:savings-progress', (event) => {
       this.createOverUnderView(event.detail)
     })
   }
