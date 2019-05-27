@@ -23,8 +23,8 @@ const createRouter = function (collection) {
     const newData = req.body;
     const newDate = {}
     newDate.date = new Date()
-      .toString()
-      .substring(4, 15);
+      .toDateString()
+      // .substring(4, 15);
 
     const combinedData = Object.assign(newData, newDate)
     console.log('date stamp added:', combinedData);

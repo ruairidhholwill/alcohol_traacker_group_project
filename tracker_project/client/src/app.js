@@ -4,6 +4,7 @@ const Booze = require('./models/booze.js');
 const Settings = require('./models/settings.js')
 const DrinksListView = require('./views/drinks_list_view.js')
 const SettingsView = require('./views/settings_view.js')
+const Charts = require('./models/charts.js')
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('JavaScript Loaded')
@@ -31,6 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const drinksContainer = document.querySelector('div#list-div')
     const drinksListView = new DrinksListView(drinksContainer);
     drinksListView.bindEvents();
+
+    const charts = new Charts();
+    charts.bindEvents();
 
     const url = 'http://localhost:3000/api/booze';
     const booze = new Booze(url);
