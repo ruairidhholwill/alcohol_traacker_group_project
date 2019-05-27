@@ -13,7 +13,6 @@ const PubSub = require('../helpers/pub_sub.js');
 const DrinkView = require('../views/drink_view.js');
 
 
-
 const DrinksListView = function(container){
   this.container = container;
 }
