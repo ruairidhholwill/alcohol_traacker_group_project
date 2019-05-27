@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formView = new FormView(formContainer, sizeContainer);
     formView.bindEvents();
 
-    const drinksContainer = document.querySelector('div#list-div')
+    const drinksContainer = document.querySelector('div#list-view')
     const drinksListView = new DrinksListView(drinksContainer);
     drinksListView.bindEvents();
 

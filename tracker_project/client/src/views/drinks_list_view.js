@@ -4,7 +4,7 @@
 
 //db - model - drinks_list_view using express.
 
-//also publishing button events - 
+//also publishing button events -
     //delete
     //update
 
@@ -15,18 +15,34 @@ const DrinkView = require('../views/drink_view.js');
 
 
 const DrinksListView = function(container){
-    this.container = container;
+  this.container = container;
 }
 
 DrinksListView.prototype.bindEvents = function(){
-    PubSub.subscribe('Booze:data-loaded', (event)=>{
-        //console.log('subscibed to:', event);  
-        this.render(event.detail)
-    })
+  PubSub.subscribe('Booze:data-loaded', (event)=>{
+      //console.log('subscibed to:', event);
+      this.render(event.detail)
+  })
+  const checkboxElement = document.getElementById("list-chart-toggle")
+  checkboxElement.addEventListener('click', () => {
+    console.log(checkboxElement.checked)
+    if (checkboxElement.checked === true) {
+      this.container.innerHTML = ''
+      const hello = document.createElement('h1');
+      hello.textContent = 'HELLO!'
+      this.container.appendChild(hello)
+    }else {
+      this.container.innerHTML = ''
+      PubSub.subscribe('Booze:data-loaded', (event)=>{
+          //console.log('subscibed to:', event);
+          this.render(event.detail)
+      })
+    }
+  })
 }
 
 DrinksListView.prototype.render = function(drinks){
-    //WARNING WARNING - 
+    //WARNING WARNING -
     //IF YOU LEAVE OUT THE FOLLOWING LINE OF CODE THEN YOU WILL WASTE LOADS OF TIME
     //CHASING YOUR ARSE AS IT LOOKS LIKE THE DATA ON THE SCREEN IS NOT REDUCING WHEN YOU
     //HIT DELETE. IN FACT IT IS REDUCING BUT WHEN THE DATA RE-RENDERS ON THE SCREEN
