@@ -12,11 +12,13 @@
     //then update function to the db
 const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub.js')
+const FormView = require('../views/form_view.js')
 
 const Booze = function (url) {
     this.url = url;
     this.request = new RequestHelper(this.url)
     this.allData = []
+    this.updateID = ""
 };
 
 
@@ -39,6 +41,19 @@ Booze.prototype.bindEvents = function() {
       this.findOne(event.detail)
       console.log('this.find', event.detail)
     })
+
+    PubSub.subscribe('FormView:updateID-submitted', (event) => {
+      this.updateID = event.detail
+      console.log('updateID', this.updateID)
+      PubSub.subscribe('FormView:update-submitted', (event) => {
+        this.update(event.detail, this.updateID);
+      })
+    })
+
+      // console.log(event.detail)
+      // console.log('updateID', formView.drinkUpdateID)
+      // this.update(event.detail, updateID);
+    // })
 };
 
 
@@ -68,6 +83,13 @@ Booze.prototype.findOne = function (drinkID) {
     .then((drink) => {
       // console.log('foundOne', drink)
       PubSub.publish('Booze:found-drink-ready', drink)
+    })
+};
+
+Booze.prototype.update = function (body, drinkID) {
+  this.request.put(body, drinkID)
+    .then((drinks) => {
+      PubSub.publish('Booze:data-loaded', drinks)
     })
 };
 
