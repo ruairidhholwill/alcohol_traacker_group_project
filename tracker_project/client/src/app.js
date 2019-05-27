@@ -33,13 +33,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const formView = new FormView(formContainer, sizeContainer);
     formView.bindEvents();
 
+    const url = 'http://localhost:3000/api/booze';
+    const booze = new Booze(url);
+    booze.getData();
+    booze.bindEvents();
+    
+
     const drinksContainer = document.querySelector('div#list-div')
     const drinksListView = new DrinksListView(drinksContainer);
     drinksListView.bindEvents();
 
-    const url = 'http://localhost:3000/api/booze';
-    const booze = new Booze(url);
+    // const url = 'http://localhost:3000/api/booze';
+    // const booze = new Booze(url);
+    // booze.bindEvents();
+    // booze.getData();
 
-    booze.bindEvents();
-    booze.getData();
+    
 })

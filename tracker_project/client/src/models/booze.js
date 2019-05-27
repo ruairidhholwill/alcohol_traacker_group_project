@@ -52,9 +52,11 @@ Booze.prototype.bindEvents = function() {
   })
 
   PubSub.subscribe('Settings:data-loaded', (event) => {
-    this.displaySavingGoal(event.detail)
+    this.displaySavingGoal(event.detail);
+    // this.calculateSavingsOverOrUnder();
   })
-};
+
+}
 
 
 
@@ -64,7 +66,7 @@ Booze.prototype.getData = function(){
     PubSub.publish('Booze:data-loaded', boozeDetails)
     console.log('published to :', boozeDetails)
     this.allData = boozeDetails;
-    this.calcTotalSpent();
+    this.calculateSavingsOverOrUnder()
   })
   .catch(console.error)
 
@@ -102,22 +104,26 @@ Booze.prototype.deleteBooze = function(drinkID){
   })
 };
 
-Booze.prototype.displaySavingGoal = function () {
-    this.savingGoal = event.detail[0].saveAmount
-    PubSub.publish('Booze:saving-goal', event.detail[0].saveAmount)
+Booze.prototype.displaySavingGoal = function (data) {
+    this.savingGoal = data[0].saveAmount
+    PubSub.publish('Booze:saving-goal', data[0].saveAmount)
 }
 
 Booze.prototype.calcTotalSpent = function () {
-  let total = 0
-  const drinkSum = this.allData.forEach((drink) =>{
-    total += drink.price;
+  PubSub.subscribe('Booze:data-loaded', (event) => {
+    let total = 0  
+    const drinks = event.detail
+    const drinkSum = drinks.forEach((drink) =>{
+        total += drink.price;
+      })
+      PubSub.publish('Booze:total-spent-calculated', total)
+      return total
   })
-  PubSub.publish('Booze:total-spent-calculated', total)
-  return total
 };
 
 Booze.prototype.calculateSavingsOverOrUnder = function () {
     const amountSpent = this.calcTotalSpent()
+    console.log('HELLLLLLLLLO', amountSpent)
     const calcSavingsProgress = this.savingGoal - amountSpent
     PubSub.publish('Booze:savings-progress', calcSavingsProgress)
     return calcSavingsProgress

@@ -4,10 +4,10 @@ const ResultsView = function(container ) {
     this.container = container;
   }
 
+
 ResultsView.prototype.bindEvents = function () {
     PubSub.subscribe('Booze:saving-goal', (event) => {
       this.createGoalView(event.detail)
-      console.log('are you working?', event)
     })
 
     PubSub.subscribe('Booze:total-spent-calculated', (event) => {
@@ -33,6 +33,5 @@ ResultsView.prototype.createOverUnderView = function(event) {
     const OverUnderAmount = document.querySelector('#over-under');
     OverUnderAmount.textContent = `Budget Left: £${event}`
     }  
-
 
   module.exports = ResultsView;
