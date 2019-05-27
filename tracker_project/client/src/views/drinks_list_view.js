@@ -4,7 +4,7 @@
 
 //db - model - drinks_list_view using express.
 
-//also publishing button events - 
+//also publishing button events -
     //delete
     //update
 
@@ -20,18 +20,18 @@ const DrinksListView = function(container){
 
 DrinksListView.prototype.bindEvents = function(){
     PubSub.subscribe('Booze:data-loaded', (event)=>{
-        //console.log('subscibed to:', event);  
+        //console.log('subscibed to:', event);
         this.render(event.detail)
     })
 }
 
 DrinksListView.prototype.render = function(drinks){
-    //WARNING WARNING - 
+    //WARNING WARNING -
     //IF YOU LEAVE OUT THE FOLLOWING LINE OF CODE THEN YOU WILL WASTE LOADS OF TIME
     //CHASING YOUR ARSE AS IT LOOKS LIKE THE DATA ON THE SCREEN IS NOT REDUCING WHEN YOU
     //HIT DELETE. IN FACT IT IS REDUCING BUT WHEN THE DATA RE-RENDERS ON THE SCREEN
     //IT DOES NOT DELETE THE PREVIOUS DATA, IT JUST APPENDS IT AFTER THE PREVIOUS DATA
-
+    console.log(this.container)
     this.container.innerHTML = '';
     const drinkView = new DrinkView(this.container);
     drinks.forEach((drink) => drinkView.render(drink));

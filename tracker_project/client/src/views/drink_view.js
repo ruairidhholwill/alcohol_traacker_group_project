@@ -8,44 +8,44 @@ const DrinkView = function(container){
 this.container = container;
 };
 
-DrinkView.prototype.render = function(drink){
+DrinkView.prototype.render = function(drinkInfo){
 
-    const drinkContainer = document.createElement('div')
+    const drinkContainer = document.createElement('tr')
     drinkContainer.id = 'drink';
 
-    const drinks = this.createHeading(drink.drinkType)
-    drinkContainer.appendChild(drinks);
+    const drink = this.createTableData(drinkInfo.drinkType)
+    drinkContainer.appendChild(drink);
 
-    const size = this.createHeading(drink.drinkSize)
+    const size = this.createTableData(drinkInfo.drinkSize)
     drinkContainer.appendChild(size);
 
-    const date = this.createHeading(drink.date)
-    drinkContainer.appendChild(date);
+    // const date = this.createHeading(drink.date)
+    // drinkContainer.appendChild(date);
 
-    const units = this.createHeading(drink.drinkUnits)
-    drinkContainer.appendChild(units);
+    // const units = this.createHeading(drink.drinkUnits)
+    // drinkContainer.appendChild(units);
 
-    const price = this.createHeading(drink.price)
+    const price = this.createTableData(drinkInfo.price)
     drinkContainer.appendChild(price);
 
-    const deleteButton = this.createDeleteButton(drink._id)
-    //console.log('id',drink._id )
-    deleteButton.innerHTML = 'Delete me'
-    drinkContainer.appendChild(deleteButton)
-
-    const updateButton = this.createUpdateButton(drink._id)
-    updateButton.innerHTML = 'Update me'
-    drinkContainer.appendChild(updateButton)
+    // const deleteButton = this.createDeleteButton(drink._id)
+    // //console.log('id',drink._id )
+    // deleteButton.innerHTML = 'Delete me'
+    // drinkContainer.appendChild(deleteButton)
+    //
+    // const updateButton = this.createUpdateButton(drink._id)
+    // updateButton.innerHTML = 'Update me'
+    // drinkContainer.appendChild(updateButton)
 
 
 
     this.container.appendChild(drinkContainer)
 }
 
-DrinkView.prototype.createHeading = function(textContent) {
-    const heading = document.createElement('h1');
-    heading.textContent = textContent;
-    return heading;
+DrinkView.prototype.createTableData = function(textContent) {
+    const data = document.createElement('td');
+    data.textContent = textContent;
+    return data;
 }
 
 
