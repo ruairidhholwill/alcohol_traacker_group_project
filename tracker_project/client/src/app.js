@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsUrl = 'http://localhost:3000/api/settings';
     const settings = new Settings(settingsUrl)
     settings.bindEvents()
+    settings.getData();
 
     const settingsButtonElement = document.querySelector('#settings-btn');
     const settingsContainer = document.querySelector('#settings-form');
@@ -35,5 +36,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const booze = new Booze(url);
 
     booze.bindEvents();
-    booze.getData()
+    booze.getData();
 })
