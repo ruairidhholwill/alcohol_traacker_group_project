@@ -9,7 +9,7 @@
 
 
     <!-- <h3 id="settings-header">settings</h3> -->
-    <button onclick="myFunction()">Settings</button>
+    <button id="settings-btn">Settings</button>
 
     <div id="settings">
       <form id="settings-form">
@@ -21,7 +21,7 @@
       </form>
     </div>
 
-    <script>
+    <!-- <script>
     function myFunction() {
       var x = document.getElementById("settings");
       if (x.style.display === "none") {
@@ -30,7 +30,7 @@
         x.style.display = "none";
       }
     }
-    </script>
+    </script> -->
 
 
    <div id="logo"></div>
@@ -39,9 +39,9 @@
    <div id="form-div">
    <form>
     <div id="drink-type-selection">
-        <input type="radio" name="drink" value="beer" checked> Beer
-        <input type="radio" name="drink" value="wine"> Wine
-        <input type="radio" name="drink" value="spirits"> Spirits
+        <input type="radio" id="beer" name="drink" value="beer" checked> Beer
+        <input type="radio" id="wine" name="drink" value="wine"> Wine
+        <input type="radio" id="spirits" name="drink" value="spirits"> Spirits
     </div>
     <div id="size-selection">
 

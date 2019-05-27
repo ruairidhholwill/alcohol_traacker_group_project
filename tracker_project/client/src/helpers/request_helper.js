@@ -1,12 +1,12 @@
 const RequestHelper = function (url) {
     this.url = url;
   };
-  
+
   RequestHelper.prototype.get = function () {
     return fetch(this.url)
       .then((response) => response.json());
   };
-  
+
   RequestHelper.prototype.post = function (payload) {
     return fetch(this.url, {
       method: 'POST',
@@ -18,23 +18,25 @@ const RequestHelper = function (url) {
 
   RequestHelper.prototype.put = function (payload, id) {
     return fetch(`${this.url}/${id}`, {
-        method: 'PUT', 
+        method: 'PUT',
         body: JSON.stringify(payload),
         headers: { 'Content-type': 'application/json' }
     })
     .then((response) => response.json());
   }
-  
+
   RequestHelper.prototype.delete = function (id) {
     console.log('xxxxx',`${this.url}/${id}`);
-    
+
     return fetch(`${this.url}/${id}`, {
       method: 'DELETE'
     })
       .then((response) => response.json());
   };
-  
+
+  RequestHelper.prototype.find = function (id) {
+    return fetch(`${this.url}/${id}`)
+      .then((response) => response.json());
+  };
 
   module.exports = RequestHelper;
-
-  
