@@ -12,6 +12,7 @@
     //then update function to the db
 const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub.js')
+const Settings = require('./settings.js')
 
 const Booze = function (url) {
     this.url = url;
@@ -36,8 +37,6 @@ Booze.prototype.bindEvents = function() {
     })
 };
 
-
-
 Booze.prototype.getData = function(){
     this.request.get()
         .then((boozeDetails) =>{
@@ -47,16 +46,17 @@ Booze.prototype.getData = function(){
             this.calcTotalSpent();
         })
         .catch(console.error)
-
 }
 
-Booze.prototype.postBooze = function(boozeDetail){
-    console.log('post boozeDetails', boozeDetail)
-    this.request.post(boozeDetail)
-    .then((boozeDetails)=>{
-        PubSub.publish('Booze:data-loaded', boozeDetails)
-    })
-}
+Booze.prototype.getSettingsData = function () {
+        Settings.request.get()
+          .then((settingDetails) => {
+            PubSub.publish('Settings:data-loaded', settingDetails)
+            console.log('setting data', settingDetails)
+            this.allSettingsData = settingDetails
+          })
+          .catch(console.error)
+      }
 
 Booze.prototype.deleteBooze = function(drinkID){
     console.log('drinkID:::', drinkID)
@@ -77,6 +77,10 @@ Booze.prototype.calcTotalSpent = function () {
   console.log(total)
   return total
 };
+
+
+
+// calculate money over/under budget
 
 
 
