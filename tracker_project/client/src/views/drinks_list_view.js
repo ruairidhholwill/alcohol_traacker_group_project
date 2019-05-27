@@ -28,6 +28,11 @@ DrinksListView.prototype.bindEvents = function(){
   document.getElementById('chart-view').appendChild(hello)
   document.getElementById('chart-view').style.display = 'none';
 
+  this.toggleListChart();
+
+}
+
+DrinksListView.prototype.toggleListChart = function () {
   const checkboxElement = document.getElementById("list-chart-toggle")
   checkboxElement.addEventListener('click', () => {
     console.log(checkboxElement.checked)
@@ -39,7 +44,7 @@ DrinksListView.prototype.bindEvents = function(){
       document.getElementById('chart-view').style.display = 'none';
     }
   })
-}
+};
 
 DrinksListView.prototype.render = function(drinks){
     //WARNING WARNING -
