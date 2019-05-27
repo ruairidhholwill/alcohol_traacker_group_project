@@ -1,15 +1,3 @@
-
-
-// This will have request_helper required in
-// This file connects with the db using express.
-
-// get data function
-    //returns data to the view.
-
-//listening for form submit
-    //then post function to the db
-    //then delete function to the db
-    //then update function to the db
 const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub.js')
 const FormView = require('../views/form_view.js')
@@ -19,11 +7,7 @@ const Booze = function (url) {
     this.request = new RequestHelper(this.url)
     this.allData = []
     this.updateID = ""
-    this.savingGoal = 0
 };
-
-
-//If you have more than one bindevents the second one will be ignored.
 
 Booze.prototype.bindEvents = function() {
 
@@ -52,7 +36,6 @@ Booze.prototype.bindEvents = function() {
   })
 
 }
-
 
 
 Booze.prototype.getData = function(){

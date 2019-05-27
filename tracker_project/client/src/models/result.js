@@ -37,7 +37,6 @@ Results.prototype.calcTotalSpent = function () {
 
 Results.prototype.calculateSavingsOverOrUnder = function () {
     const amountSpent = this.calcTotalSpent()
-    console.log('HELLLLLLLLLO', amountSpent)
     const calcSavingsProgress = this.savingGoal - amountSpent
     PubSub.publish('Results:savings-progress', calcSavingsProgress)
     return calcSavingsProgress
