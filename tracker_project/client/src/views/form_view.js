@@ -103,7 +103,7 @@ FormView.prototype.createDrinkInfo = function (form) {
     drinkUnits: drinkUnits,
     price: parseFloat(price)
   }
-  // console.log(newDrink.drinkUnits)
+  console.log('PARSE', price)
   return newDrink;
 };
 

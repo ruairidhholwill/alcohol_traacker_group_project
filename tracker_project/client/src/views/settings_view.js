@@ -15,6 +15,7 @@ SettingsView.prototype.bindEvents = function () {
     const newSettings = this.creatSettings(event.target);
     console.log(newSettings);
     PubSub.publish('SettingsView:settings-submitted', newSettings)
+    
   })
 };
 
