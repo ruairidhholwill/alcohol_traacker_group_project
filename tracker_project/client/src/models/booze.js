@@ -1,15 +1,3 @@
-
-
-// This will have request_helper required in
-// This file connects with the db using express.
-
-// get data function
-    //returns data to the view.
-
-//listening for form submit
-    //then post function to the db
-    //then delete function to the db
-    //then update function to the db
 const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub.js')
 const FormView = require('../views/form_view.js')
@@ -19,11 +7,7 @@ const Booze = function (url) {
     this.request = new RequestHelper(this.url)
     this.allData = []
     this.updateID = ""
-    this.savingGoal = 0
 };
-
-
-//If you have more than one bindevents the second one will be ignored.
 
 Booze.prototype.bindEvents = function() {
 
@@ -51,11 +35,7 @@ Booze.prototype.bindEvents = function() {
     })
   })
 
-  PubSub.subscribe('Settings:data-loaded', (event) => {
-    this.displaySavingGoal(event.detail)
-  })
-};
-
+}
 
 
 Booze.prototype.getData = function(){
@@ -64,7 +44,6 @@ Booze.prototype.getData = function(){
     PubSub.publish('Booze:data-loaded', boozeDetails)
     console.log('published to :', boozeDetails)
     this.allData = boozeDetails;
-    this.calcTotalSpent();
   })
   .catch(console.error)
 
@@ -101,26 +80,5 @@ Booze.prototype.deleteBooze = function(drinkID){
     console.log('Booze:data-loaded::', drink)
   })
 };
-
-Booze.prototype.displaySavingGoal = function () {
-  this.savingGoal = event.detail[0].saveAmount
-}
-
-Booze.prototype.calcTotalSpent = function () {
-  let total = 0
-  const drinkSum = this.allData.forEach((drink) =>{
-    total += drink.price;
-  })
-  return total
-};
-
-Booze.prototype.calculateSavingsOverOrUnder = function () {
-  const amountSpent = this.calcTotalSpent()
-  const calcSavingsProgress = this.savingGoal - amountSpent
-  console.log(calcSavingsProgress)
-  return calcSavingsProgress
-
-
-}
 
 module.exports = Booze;
