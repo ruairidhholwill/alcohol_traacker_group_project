@@ -8,7 +8,12 @@ const DrinkView = function(container){
 this.container = container;
 };
 
-DrinkView.prototype.render = function(drinkInfo){
+
+
+
+DrinkView.prototype.render = function(drink){
+
+
 
     const drinkContainer = document.createElement('tr')
     drinkContainer.id = 'drink';
@@ -36,7 +41,6 @@ DrinkView.prototype.render = function(drinkInfo){
     // const updateButton = this.createUpdateButton(drink._id)
     // updateButton.innerHTML = 'Update me'
     // drinkContainer.appendChild(updateButton)
-
 
 
     this.container.appendChild(drinkContainer)
