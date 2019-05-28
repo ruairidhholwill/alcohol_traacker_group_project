@@ -64,7 +64,6 @@ FormView.prototype.createSizeSelectors = function (sizes) {
         const sizeLabel = document.createElement('label');
         sizeLabel.innerHTML = size;
         const sizeSelect = document.createElement('input');
-        console.log('INPUUUUUUUUUUUUUT', sizeSelect)
         sizeSelect.required = true;
         sizeSelect.type = 'radio';
         sizeSelect.name = 'size';
