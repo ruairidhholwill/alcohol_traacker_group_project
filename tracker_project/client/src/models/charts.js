@@ -37,7 +37,7 @@ Charts.prototype.getPriceAndUnitDataPerDay = function () {
     let totalUnits = 0;
     this.allData.forEach((loggedDrink) => {
       if(loggedDrink.date === date) {
-        totalSpent += loggedDrink.price;
+        totalSpent += parseFloat(loggedDrink.price);
         totalUnits += loggedDrink.drinkUnits;
       }
     });
