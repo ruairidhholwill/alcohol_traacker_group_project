@@ -24,6 +24,10 @@ Settings.prototype.getData = function () {
 Settings.prototype.postSettings = function(settingDetail){
     // console.log('post boozeDetails', boozeDetail)
     this.request.post(settingDetail)
+    .then((settingDetails) => {
+      PubSub.publish('Settings:data-loaded', settingDetails)
+    })
+    .catch(console.error)
     }
 
 module.exports = Settings;
