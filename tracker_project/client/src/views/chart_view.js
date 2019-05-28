@@ -4,37 +4,46 @@ const RequestHelper = require('../helpers/request_helper.js')
 
 const ChartView = function(container, data){
     this.container = container
-    this.data = data  
+    //this.data = data  
+    this.goal = 0
+    this.calcSpend = 0
 }
 
 
 
 ChartView.prototype.bindEvents = function(){
-    PubSub.subscribe('Booze:data-loaded', (event)=>{
-        console.log('chart', event.detail)
-        this.chartRender(event.detail)
-        window.onload(event.detail)
+
+    PubSub.subscribe('Results:saving-goal', (event)=>{
+        this.goal = event.detail
+        console.log('xxthis.goal', event.detail)
+        
+       // window.onload(this.calcSpend)
     })
+
+    PubSub.subscribe('Results:total-spent-calculated', (event)=>{
+        console.log('Results:total-spent-calculated', event.detail)
+        //this.chartRender(event.detail)
+        this.calcSpend = event.detail
+        console.log('this.calc', this.calcSpend)
+        
+        this.render(this.calcSpend, this.goal)
+        
+       
+    })
+    
+	
 }
 
-ChartView.prototype.chartRender = function(drink){
-    //this.container.innerHTML = ""
-    console.log('charterRender chartView', drink[0].drinkUnits)
-    this.data = drink
-    const chartData = new ChartView(this.container);
-    window.onload(drink)
-}
 
 
 ////////CIRCULAR CHART/////////////////////////////////////////////////////////////
 
-window.onload = function (data) {
+ChartView.prototype.render = function (data, goal) {
+
+    console.log('xxxxxxxxxxxx', goal)
+    // console.log('yyyyyyyyyyyy', calc)
 
 
-    console.log('xxevent detail chartView', data[0].drinkUnits)
-
-
-    var totalVisitors = 12;
     var visitorsData = {
         "Tracker": [{
             click: visitorsChartDrilldownHandler,
@@ -48,8 +57,8 @@ window.onload = function (data) {
             startAngle: 90,
             type: "doughnut",
             dataPoints: [
-                { y: `${data[0].price}`, name: "Money Spent", color: "#E7823A" },
-                { y: (12 - `${data[0].price}`), name: "Money remaining of target goal", color: "#546BC1" }
+                { y: `${data}`, name: "Money Spent", color: "#E7823A" },
+                { y: (goal - `${data}`), name: "Money remaining of target goal", color: "#546BC1" }
             ]
         }],
        
@@ -68,7 +77,7 @@ window.onload = function (data) {
             fontSize: 14,
             itemTextFormatter: function (e) {
                 console.log('ye',e.dataPoint.y)
-return e.dataPoint.name + ": " + (e.dataPoint.y / totalVisitors * 100).toFixed(2) + "%";  
+return e.dataPoint.name + ": " + (e.dataPoint.y / goal * 100).toFixed(2) + "%";  
                 
             }
         },
