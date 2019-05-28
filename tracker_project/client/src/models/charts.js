@@ -9,6 +9,10 @@ const Charts = function() {
 
 Charts.prototype.bindEvents = function () {
   PubSub.subscribe('Booze:data-loaded', (events) => {
+    this.allData = []
+    this.dates = []
+    this.pounds = []
+    this.units = []
     this.allData = event.detail;
     this.getPriceAndUnitDataPerDay();
     const chartData = this.createDataForChart(this.dates, this.pounds, this.units)
