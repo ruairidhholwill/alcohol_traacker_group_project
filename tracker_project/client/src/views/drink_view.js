@@ -8,7 +8,12 @@ const DrinkView = function(container){
 this.container = container;
 };
 
+
+
+
 DrinkView.prototype.render = function(drink){
+
+   
 
     const drinkContainer = document.createElement('div')
     drinkContainer.id = 'drink';
@@ -34,7 +39,6 @@ DrinkView.prototype.render = function(drink){
     drinkContainer.appendChild(deleteButton)
 
 
-
     this.container.appendChild(drinkContainer)
 }
 
@@ -57,6 +61,9 @@ DrinkView.prototype.createDeleteButton = function(drinkID){
     })
     return button;
 }
+
+
+
 
 module.exports = DrinkView;
 
