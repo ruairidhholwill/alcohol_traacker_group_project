@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const settingsButtonElement = document.querySelector('#settings-btn');
-   
+
 
 
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     booze.bindEvents();
 
 
-    const drinksContainer = document.querySelector('div#list-view')
+    const drinksContainer = document.querySelector('#list-table')
     const drinksListView = new DrinksListView(drinksContainer);
     drinksListView.bindEvents();
 
