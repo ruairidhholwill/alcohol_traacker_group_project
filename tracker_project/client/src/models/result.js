@@ -18,9 +18,9 @@ Results.prototype.bindEvents = function () {
         this.calcTotalSpent(event.detail)
     })
 
-    PubSub.subscribe('Booze:data-loaded', (event) => {
-        this.calculateSavingsOverOrUnder(event.detail)
-    })
+    // PubSub.subscribe('Booze:data-loaded', (event) => {
+    //     this.calculateSavingsOverOrUnder(event.detail)
+    // })
 }
 
 Results.prototype.displaySavingGoal = function (data) {
@@ -39,11 +39,11 @@ Results.prototype.calcTotalSpent = function (data) {
       return total
   };
 
-Results.prototype.calculateSavingsOverOrUnder = function (data) {
-    const amountSpent = this.calcTotalSpent(data)
-    const calcSavingsProgress = this.savingGoal - amountSpent
-    PubSub.publish('Results:savings-progress', calcSavingsProgress)
-    return calcSavingsProgress
-}
+// Results.prototype.calculateSavingsOverOrUnder = function (data) {
+//     const amountSpent = this.calcTotalSpent(data)
+//     const calcSavingsProgress = this.savingGoal - amountSpent
+//     PubSub.publish('Results:savings-progress', calcSavingsProgress)
+//     return calcSavingsProgress
+// }
 
 module.exports = Results;
