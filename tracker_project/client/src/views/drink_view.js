@@ -54,7 +54,11 @@ DrinkView.prototype.render = function(drinkInfo){
 
 DrinkView.prototype.createTableData = function(textContent) {
     const data = document.createElement('td');
-    data.textContent = textContent;
+    if (typeof textContent === 'number') {
+      data.textContent = textContent.toFixed(2).toString()
+    } else {
+        data.textContent = textContent;
+    }
     return data;
 }
 

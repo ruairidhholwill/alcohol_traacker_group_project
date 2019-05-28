@@ -70,7 +70,6 @@ FormView.prototype.createSizeSelectors = function (sizes) {
         sizeSelect.value = size;
         this.sizeContainer.appendChild(sizeSelect)
         this.sizeContainer.appendChild(sizeLabel)
-        // console.log(sizeSelect.value)
     })
 }
 
@@ -101,7 +100,7 @@ FormView.prototype.createDrinkInfo = function (form) {
     drinkType: form.drink.value,
     drinkSize: form.size.value,
     drinkUnits: drinkUnits,
-    price: parseFloat(price)
+    price: parseFloat(price).toFixed(2)
   }
   console.log('PARSE', price)
   return newDrink;
