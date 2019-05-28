@@ -27,9 +27,9 @@ Results.prototype.displaySavingGoal = function (data) {
     PubSub.publish('Results:saving-goal', this.savingGoal)
 }
 
-Results.prototype.calcTotalSpent = function () {
+Results.prototype.calcTotalSpent = function (data) {
     let total = 0  
-    const drinks = event.detail
+    const drinks = data
     const drinkSum = drinks.forEach((drink) =>{
         total += drink.price;
       })
@@ -37,8 +37,8 @@ Results.prototype.calcTotalSpent = function () {
       return total
   };
 
-Results.prototype.calculateSavingsOverOrUnder = function () {
-    const amountSpent = this.calcTotalSpent()
+Results.prototype.calculateSavingsOverOrUnder = function (data) {
+    const amountSpent = this.calcTotalSpent(data)
     const calcSavingsProgress = this.savingGoal - amountSpent
     PubSub.publish('Results:savings-progress', calcSavingsProgress)
     return calcSavingsProgress
