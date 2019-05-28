@@ -75,25 +75,7 @@ return e.dataPoint.name + ": " + (e.dataPoint.y / totalVisitors * 100).toFixed(2
         data: []
     };
     
-    // var visitorsDrilldownedChartOptions = {
-    //     animationEnabled: true,
-    //     theme: "light2",
-    //     axisX: {
-    //         labelFontColor: "#717171",
-    //         lineColor: "#a2a2a2",
-    //         tickColor: "#a2a2a2"
-    //     },
-    //     axisY: {
-    //         gridThickness: 0,
-    //         includeZero: false,
-    //         labelFontColor: "#717171",
-    //         lineColor: "#a2a2a2",
-    //         tickColor: "#a2a2a2",
-    //         lineThickness: 1
-    //     },
-    //     data: []
-    // };
-    
+ 
     var chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
     chart.options.data = visitorsData["Tracker"];
     //console.log('asd', chart.options.data)

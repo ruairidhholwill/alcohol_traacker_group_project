@@ -38,6 +38,10 @@ DrinkView.prototype.render = function(drink){
     deleteButton.innerHTML = 'Delete me'
     drinkContainer.appendChild(deleteButton)
 
+    const updateButton = this.createUpdateButton(drink._id)
+    updateButton.innerHTML = 'Update me'
+    drinkContainer.appendChild(updateButton)
+
 
     this.container.appendChild(drinkContainer)
 }
@@ -57,13 +61,20 @@ DrinkView.prototype.createDeleteButton = function(drinkID){
     button.addEventListener('click', (event)=>{
         PubSub.publish('DrinkView:delete_clicked', button.value);
         console.log('DrinkView:delete_clicked:::', button.value);
-        
+
     })
     return button;
 }
 
-
-
+DrinkView.prototype.createUpdateButton = function (drinkID) {
+  const button = document.createElement('button');
+  button.classList.add('update-btn');
+  button.value = drinkID;
+  button.addEventListener('click', (event) => {
+    PubSub.publish('DrinkView:update_clicked', button.value);
+    console.log(button.value)
+  })
+  return button;
+};
 
 module.exports = DrinkView;
-

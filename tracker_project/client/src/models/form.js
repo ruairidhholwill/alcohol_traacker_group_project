@@ -5,10 +5,7 @@ const Form = function (container) {
 }
 
 Form.prototype.bindEvents = function () {
-    // debugger
-    sizesDefualt = this.selectedDrinkSizeOutput('beer');
-    console.log(sizesDefualt);
-    PubSub.publish('Form:drink-sizes-ready', sizesDefualt);
+
     this.container.addEventListener('click', (event) => {
         console.log(event.target.value);
         const selectedDrink = event.target.value
@@ -19,16 +16,15 @@ Form.prototype.bindEvents = function () {
 
 Form.prototype.selectedDrinkSizeOutput = function (selectedDrink) {
     if (selectedDrink === 'beer') {
-        const beerSizes = ['Half Pint', 'Pint', 'Bottle']
+        const beerSizes = ['half pint', 'pint', 'bottle']
         return beerSizes;
     } else if (selectedDrink === 'wine') {
-        const wineSizes = ['Small', 'Medium', 'Large']
+        const wineSizes = ['small', 'medium', 'large']
         return wineSizes;
     } else if (selectedDrink === 'spirits') {
-        const spiritSizes = ['Single', 'Double']
+        const spiritSizes = ['single', 'double']
         return spiritSizes;
     }
-
 }
 
 module.exports = Form;
