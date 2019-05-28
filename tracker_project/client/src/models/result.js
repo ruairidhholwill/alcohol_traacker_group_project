@@ -9,6 +9,9 @@ const Results = function () {
 Results.prototype.bindEvents = function () {
     PubSub.subscribe('Settings:data-loaded', (event) => {
         this.displaySavingGoal(event.detail);
+        console.log("EVENT.DETAIL", event.detail)
+        this.savingGoal = event.detail[event.detail.length - 1].saveAmount
+    
       })
 
     PubSub.subscribe('Booze:data-loaded', (event) => {
@@ -21,7 +24,7 @@ Results.prototype.bindEvents = function () {
 }
 
 Results.prototype.displaySavingGoal = function (data) {
-    const recentData = data.pop()
+    const recentData = data[event.detail.length - 1]
     console.log(recentData)
     this.savingGoal = recentData.saveAmount
     PubSub.publish('Results:saving-goal', this.savingGoal)
