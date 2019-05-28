@@ -13,7 +13,7 @@ Results.prototype.bindEvents = function () {
     })
 
     PubSub.subscribe('Settings:data-loaded', (event) => {
-        this.publishCurrentSpent(event.detail);
+        this.publishCurrentSpend(event.detail);
     })
 
     PubSub.subscribe('Booze:data-loaded', (event) => {
@@ -31,10 +31,9 @@ Results.prototype.displaySavingGoal = function (data) {
     PubSub.publish('Results:saving-goal', this.savingGoal)
 }
 
-Results.prototype.publishCurrentSpent = function (data) {
+Results.prototype.publishCurrentSpend = function (data) {
     const recentSpentData = data[event.detail.length - 1]
     const currentSpent = recentSpentData.currentSpend
-    console.log(currentSpent)
     PubSub.publish('Results:current-spend-amount', currentSpent)
 }
 
