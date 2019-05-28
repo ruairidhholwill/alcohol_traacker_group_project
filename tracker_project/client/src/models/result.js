@@ -9,21 +9,23 @@ const Results = function () {
 Results.prototype.bindEvents = function () {
     PubSub.subscribe('Settings:data-loaded', (event) => {
         this.displaySavingGoal(event.detail);
+        console.log("EVENT.DETAIL", event.detail)
+        this.savingGoal = event.detail[event.detail.length - 1].saveAmount
+    
       })
 
     PubSub.subscribe('Booze:data-loaded', (event) => {
         this.calcTotalSpent(event.detail)
     })
 
-    PubSub.subscribe('Booze:data-loaded', (event) => {
-        this.calculateSavingsOverOrUnder(event.detail)
-    })
+    // PubSub.subscribe('Booze:data-loaded', (event) => {
+    //     this.calculateSavingsOverOrUnder(event.detail)
+    // })
 }
 
 Results.prototype.displaySavingGoal = function (data) {
-    const recentData = data.pop()
-    console.log(recentData)
-    this.savingGoal = recentData.saveAmount
+    const recentData = data[event.detail.length - 1]
+    this.savingGoal = recentData.currentSpend - recentData.saveAmount
     PubSub.publish('Results:saving-goal', this.savingGoal)
 }
 
@@ -37,11 +39,11 @@ Results.prototype.calcTotalSpent = function (data) {
       return total
   };
 
-Results.prototype.calculateSavingsOverOrUnder = function (data) {
-    const amountSpent = this.calcTotalSpent(data)
-    const calcSavingsProgress = this.savingGoal - amountSpent
-    PubSub.publish('Results:savings-progress', calcSavingsProgress)
-    return calcSavingsProgress
-}
+// Results.prototype.calculateSavingsOverOrUnder = function (data) {
+//     const amountSpent = this.calcTotalSpent(data)
+//     const calcSavingsProgress = this.savingGoal - amountSpent
+//     PubSub.publish('Results:savings-progress', calcSavingsProgress)
+//     return calcSavingsProgress
+// }
 
 module.exports = Results;
