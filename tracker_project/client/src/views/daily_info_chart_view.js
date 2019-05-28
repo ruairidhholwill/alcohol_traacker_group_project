@@ -1,32 +1,47 @@
+const PubSub = require('../helpers/pub_sub.js');
+
 const DailyChart = function (container){
   this.container = container;
+  this.dates = []
+  this.pounds = []
+  this.units = []
 
+  // subdcribe to chart model
+  DailyChart.prototype.bindEvents = function () {
+    PubSub.subscribe('Charts:chart-data-ready', (event) => {
+      dates = event.detail.dates;
+      pounds = event.detail.pounds;
+      units = event.detail.units;
+      this.renderChart(dates, pounds, units);
+    })
+  };
 
-  // subdcribe to chart model 
+  DailyChart.prototype.renderChart = function (dates, pounds, units) {
+    Highcharts.chart('chart-view', {
+           chart: {
+               type: 'column'
+           },
+           title: {
+               text: 'Spending / Units Intake'
+           },
+           xAxis: {
+               categories: dates
+           },
+           yAxis: {
+               title: {
+                   text: '£ / Units'
+               }
+           },
+           series: [{
+               name: 'Pounds',
+               data: pounds
+           }, {
+               name: 'Units',
+               data: units
+           }]
+       });
+  };
 
-  Highcharts.chart('container', {
-         chart: {
-             type: 'column'
-         },
-         title: {
-             text: 'Fruit Consumption'
-         },
-         xAxis: {
-             categories: ['Apples', 'Bananas', 'Oranges']
-         },
-         yAxis: {
-             title: {
-                 text: '£ / Units'
-             }
-         },
-         series: [{
-             name: 'Pounds',
-             data: [1, 0, 4]
-         }, {
-             name: 'Units',
-             data: [5, 7, 3]
-         }]
-     });
 }
 
 

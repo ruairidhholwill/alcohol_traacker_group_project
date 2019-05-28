@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     charts.bindEvents();
 
     const dailyChartContainer = document.querySelector('div#container')
-    const dailyInfoChart = new DailyChart(dailyChartContainer);
+    const dailyChart = new DailyChart(dailyChartContainer);
+    dailyChart.bindEvents();
 
 })

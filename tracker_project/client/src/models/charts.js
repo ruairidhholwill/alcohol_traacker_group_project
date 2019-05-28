@@ -2,15 +2,17 @@ const PubSub = require('../helpers/pub_sub.js')
 
 const Charts = function() {
   this.allData = []
-  this.allDayInfo = []
+  this.dates = []
+  this.pounds = []
+  this.units = []
 }
 
 Charts.prototype.bindEvents = function () {
   PubSub.subscribe('Booze:data-loaded', (events) => {
     this.allData = event.detail;
     this.getPriceAndUnitDataPerDay();
-    console.log(this.allDayInfo);
-    PubSub.publish('Charts:day-data-ready', this.allDayInfo);
+    const chartData = this.createDataForChart(this.dates, this.pounds, this.units)
+    PubSub.publish('Charts:chart-data-ready', chartData);
   });
 };
 
@@ -35,18 +37,20 @@ Charts.prototype.getPriceAndUnitDataPerDay = function () {
         totalUnits += loggedDrink.drinkUnits;
       }
     });
-    const dayInfo = this.createDayInfo(date, totalSpent, totalUnits);
-    this.allDayInfo.push(dayInfo);
+
+    this.dates.push(date);
+    this.pounds.push(totalSpent);
+    this.units.push(totalUnits);
   });
 };
 
-Charts.prototype.createDayInfo = function (date, totalSpent, totalUnits) {
-  const dayInfo = {
-    date: date,
-    totalSpent: totalSpent,
-    totalUnits: totalUnits
-  };
-  return dayInfo
+Charts.prototype.createDataForChart = function (dates, pounds, units) {
+  const chartInfo = {
+    dates: dates,
+    pounds: pounds,
+    units: units
+  }
+  return chartInfo;
 };
 
 module.exports = Charts;
