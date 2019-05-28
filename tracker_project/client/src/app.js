@@ -4,16 +4,27 @@ const Booze = require('./models/booze.js');
 const Settings = require('./models/settings.js')
 const DrinksListView = require('./views/drinks_list_view.js')
 const SettingsView = require('./views/settings_view.js')
+const ResultsView = require('./views/result_view.js')
+const Results = require('./models/result.js')
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('JavaScript Loaded')
 
+    const resultsContainer = document.querySelector('#tracker-details');
+    resultsView = new ResultsView(resultsContainer);
+    resultsView.bindEvents();
+
+    const results = new Results()
+    results.bindEvents();
+
     const settingsUrl = 'http://localhost:3000/api/settings';
     const settings = new Settings(settingsUrl)
     settings.bindEvents()
+    settings.getData();
 
+    const settingsButtonElement = document.querySelector('#settings-btn');
     const settingsContainer = document.querySelector('#settings-form');
-    const settingsView = new SettingsView(settingsContainer);
+    const settingsView = new SettingsView(settingsButtonElement, settingsContainer);
     settingsView.bindEvents();
 
     const formContainer = document.querySelector('#form-div');
@@ -26,13 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const formView = new FormView(formContainer, sizeContainer);
     formView.bindEvents();
 
+    const url = 'http://localhost:3000/api/booze';
+    const booze = new Booze(url);
+    booze.getData();
+    booze.bindEvents();
+
+
     const drinksContainer = document.querySelector('div#list-view')
     const drinksListView = new DrinksListView(drinksContainer);
     drinksListView.bindEvents();
 
-    const url = 'http://localhost:3000/api/booze';
-    const booze = new Booze(url);
 
-    booze.bindEvents();
-    booze.getData()
 })
