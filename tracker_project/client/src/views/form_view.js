@@ -89,7 +89,9 @@ FormView.prototype.createDrinkInfo = function (form) {
   if (form.pence.value.length === 1) {
     form.pence.value = '0' + form.pence.value;
   }
-  const price = `${form.pounds.value}.${form.pence.value}`
+
+  const priceString = `${form.pounds.value}.${form.pence.value}`
+  const priceNum = parseFloat(priceString)
 
   let drinkUnits = new UnitHelper(form.drink.value, form.size.value);
   // console.log('x', drinkUnits)
@@ -100,9 +102,9 @@ FormView.prototype.createDrinkInfo = function (form) {
     drinkType: form.drink.value,
     drinkSize: form.size.value,
     drinkUnits: drinkUnits,
-    price: parseFloat(price).toFixed(2)
+    price: priceNum.toFixed(2)
   }
-  console.log('PARSE', price)
+  console.log('PARSE', typeof newDrink.price)
   return newDrink;
 };
 
