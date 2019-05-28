@@ -22,8 +22,8 @@ Results.prototype.bindEvents = function () {
 
 Results.prototype.displaySavingGoal = function (data) {
     const recentData = data.pop()
-    console.log(recentData)
-    this.savingGoal = recentData.saveAmount
+    console.log('DATA', recentData)
+    this.savingGoal = recentData.currentSpend - recentData.saveAmount
     PubSub.publish('Results:saving-goal', this.savingGoal)
 }
 

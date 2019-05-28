@@ -21,7 +21,7 @@ ResultsView.prototype.bindEvents = function () {
 
 ResultsView.prototype.createGoalView = function(event) {
     const goalAmount = document.querySelector('#goal');
-    goalAmount.textContent = `Goal: £${event}`  
+    goalAmount.textContent = `Savings Goal: £${event}`  
 }
 
 ResultsView.prototype.createSpentView = function(event) {
