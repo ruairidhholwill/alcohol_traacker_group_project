@@ -59,14 +59,15 @@ ChartView.prototype.render = function (data, goal) {
         },
         data: [{
             type: "pie",
-            startAngle: 240,
+            startAngle: 270,
             //yValueFormatString: "##0.00\"£\"",
             yValueFormatString: "\"£\"##0.00",
             indexLabel: "{label} {y}",
             dataPoints: [
                 {y: `${data}`, label: "Spent"},
-                {y: `${goal}`, label: "Budget"},
-                {y: (`${goal}` - `${data}`), label: "Remaining budget", color: "red"}
+                {y: `${goal}`, label: "Saving - fixed figure"},
+                {y: (`${goal}` - `${data}`),  color: "red"}
+                
                
             ]
         }]
