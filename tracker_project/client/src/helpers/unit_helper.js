@@ -7,25 +7,25 @@ const UnitHelper = function (drinkType, drinkSize) {
 
 UnitHelper.prototype.sizeToUnits = function () {
   if (this.drinkType === 'beer') {
-    if (this.drinkSize === 'Half Pint') {
+    if (this.drinkSize === 'half Pint') {
       return 1;
-    } else if (this.drinkSize === 'Pint') {
+    } else if (this.drinkSize === 'pint') {
       return 2;
-    } else if (this.drinkSize === 'Bottle') {
+    } else if (this.drinkSize === 'bottle') {
       return 1.7;
     }
   } else if (this.drinkType === 'wine') {
-    if (this.drinkSize === 'Small') {
+    if (this.drinkSize === 'small') {
       return 1.5;
-    } else if (this.drinkSize === 'Medium') {
+    } else if (this.drinkSize === 'medium') {
       return 2.1;
-    } else if (this.drinkSize === 'Large') {
+    } else if (this.drinkSize === 'large') {
       return 3;
     }
   } else if (this.drinkType === 'spirits') {
-    if (this.drinkSize === 'Single') {
+    if (this.drinkSize === 'single') {
       return 2;
-    } else if (this.drinkSize === 'Double') {
+    } else if (this.drinkSize === 'double') {
       return 4;
     }
   }
