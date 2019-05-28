@@ -11,7 +11,7 @@ this.container = container;
 
 
 
-DrinkView.prototype.render = function(drink){
+DrinkView.prototype.render = function(drinkInfo){
 
 
 
