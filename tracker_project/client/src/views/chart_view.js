@@ -25,93 +25,114 @@ ChartView.prototype.bindEvents = function(){
         //this.chartRender(event.detail)
         this.calcSpend = event.detail
         console.log('this.calc', this.calcSpend)
-        
+        //this.chartCap(this.calcSpend, this.goal)
         this.render(this.calcSpend, this.goal)
         
-       
     })
     
 	
 }
 
+ChartView.prototype.chartCap = function(data, goal){
+    result = (goal - data);
+    console.log('chartCap', result)
 
+    If (result <= 0)
+        console.log( 'over budget')
+    
+
+
+}
 
 ////////CIRCULAR CHART/////////////////////////////////////////////////////////////
 
 ChartView.prototype.render = function (data, goal) {
 
     console.log('xxxxxxxxxxxx', goal)
-    // console.log('yyyyyyyyyyyy', calc)
-
-
-    var visitorsData = {
-        "Tracker": [{
-            click: visitorsChartDrilldownHandler,
-            cursor: "pointer",
-            explodeOnClick: false,
-            innerRadius: "75%",
-            legendMarkerType: "square",
-            name: "Tracker",
-            radius: "100%",
-            showInLegend: true,
-            startAngle: 90,
-            type: "doughnut",
-            dataPoints: [
-                { y: `${data}`, name: "Money Spent", color: "#E7823A" },
-                { y: (goal - `${data}`), name: "Money remaining of target goal", color: "#546BC1" }
-            ]
-        }],
-       
-    };
+    console.log('yyyyyyyyyyyy', data)
     
-    var newVSReturningVisitorsOptions = {
+
+    var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
-        theme: "light2",
         title: {
-            text: "Money savings indicator"
-        
+            text: "Money"
         },
+        data: [{
+            type: "pie",
+            startAngle: 240,
+            //yValueFormatString: "##0.00\"£\"",
+            yValueFormatString: "\"£\"##0.00",
+            indexLabel: "{label} {y}",
+            dataPoints: [
+                {y: `${data}`, label: "Spent"},
+                {y: `${goal}`, label: "Budget"},
+                {y: (`${goal}` - `${data}`), label: "Remaining budget", color: "red"}
+               
+            ]
+        }]
+    });
+    chart.render();
+
+    // var visitorsData = {
+    //     "Tracker": [{
+    //         click: visitorsChartDrilldownHandler,
+    //         cursor: "pointer",
+    //         explodeOnClick: false,
+    //         innerRadius: "75%",
+    //         legendMarkerType: "square",
+    //         name: "Tracker",
+    //         radius: "100%",
+    //         showInLegend: true,
+    //         startAngle: 90,
+    //         type: "pie",
+    //         dataPoints: [
+    //             //{ y: 1, name: "visitorsData", color: "black" },
+    //            { y: 45, label: "Over budget", color: "red"  },
+              
+    //            { y: `${data}`, name: "Money Spent", color: "#E7823A" },
+    //            { y: (goal - `${data}`), name: "Money remaining of budget", color: "#546BC1" }
+    //         ]
+    //     }],
+       
+    // };
+    
+    // var newVSReturningVisitorsOptions = {
+    //     animationEnabled: true,
+    //     theme: "light2",
+    //     title: {
+    //         text: "Money savings indicator"
+    //     },
         
-        legend: {
-            fontFamily: "calibri",
-            fontSize: 14,
-            itemTextFormatter: function (e) {
-                console.log('ye',e.dataPoint.y)
-return e.dataPoint.name + ": " + (e.dataPoint.y / goal * 100).toFixed(2) + "%";  
+    //     legend: {
+    //         fontFamily: "calibri",
+    //         fontSize: 14,
+    //         itemTextFormatter: function (e) {
+    //             console.log('ye',e.dataPoint.y)
                 
-            }
-        },
-        data: []
-    };
+    //             return e.dataPoint.name + ": " + (e.dataPoint.y / goal * 100).toFixed(2) + "%";  
+    //         }
+    //     },
+    //     data: []
+    // };
     
  
-    var chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
-    chart.options.data = visitorsData["Tracker"];
-    //console.log('asd', chart.options.data)
-    chart.render();
+    // var chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
+    // chart.options.data = visitorsData["Tracker"];
+    // //console.log('asd', chart.options.data)
+    // chart.render();
     
-    function visitorsChartDrilldownHandler(e) {
-        chart = new CanvasJS.Chart("chartContainer", visitorsDrilldownedChartOptions);
-        chart.options.data = visitorsData[e.dataPoint.name];
+    // function visitorsChartDrilldownHandler(e) {
+    //     chart = new CanvasJS.Chart("chartContainer", visitorsDrilldownedChartOptions);
+    //     chart.options.data = visitorsData[e.dataPoint.name];
 
-        chart.options.title = { text: e.dataPoint.name }
-        chart.render();
-       // $("#backButton").toggleClass("invisible");
-    }
-    
-    // $("#backButton").click(function() { 
-    //     $(this).toggleClass("invisible");
-    //     chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
-    //     chart.options.data = visitorsData["New vs Returning Visitors"];
+    //     chart.options.title = { text: e.dataPoint.name }
     //     chart.render();
-    // });
+    //    // $("#backButton").toggleClass("invisible");
+    // }
+    
     
     }
 
-
-
-
-    ////////////BAR CHART///////////////////////
 
 
     module.exports = ChartView
