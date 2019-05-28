@@ -33,8 +33,7 @@ Results.prototype.calcTotalSpent = function (data) {
     let total = 0  
     const drinks = data
     const drinkSum = drinks.forEach((drink) =>{
-        console.log(drink)
-        total += drink.price;
+        total += parseFloat(drink.price);
       })
       PubSub.publish('Results:total-spent-calculated', total)
       return total

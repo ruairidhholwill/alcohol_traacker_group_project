@@ -25,3 +25,11 @@ db.booze.insertMany([
         date: 'Fri May 24 2019'
     }
 ])
+
+db.settings.insertOne([
+    {
+        currentSpend: 100,
+        saveAmount: 20,
+        date: 'Fri May 24 2019'
+    }
+])
