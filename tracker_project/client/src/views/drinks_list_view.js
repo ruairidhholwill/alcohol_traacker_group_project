@@ -23,10 +23,11 @@ DrinksListView.prototype.bindEvents = function(){
       this.render(event.detail)
   })
 
-  const hello = document.createElement('h1');
-  hello.textContent = "HELLO"
-  document.getElementById('chart-view').appendChild(hello)
-  document.getElementById('chart-view').style.display = 'none';
+  // PLACEHOLDER FOR CHARTS
+  // const hello = document.createElement('h1');
+  // hello.textContent = "HELLO"
+  // document.getElementById('chart-view').appendChild(hello)
+  // document.getElementById('chart-view').style.display = 'none';
 
   this.toggleListChart();
 

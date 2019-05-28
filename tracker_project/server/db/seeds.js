@@ -7,21 +7,29 @@ db.booze.insertMany([
         drinkType: 'beer',
         drinkSize: 'pint',
         drinkUnits: 2,
-        price: 4.99,
+        price: '4.99',
         date: 'Fri May 24 2019'
     },
     {
         drinkType: 'beer',
         drinkSize: 'half pint',
         drinkUnits: 1,
-        price: 2.99,
+        price: '2.99',
         date: 'Fri May 24 2019'
     },
     {
         drinkType: 'wine',
         drinkSize: 'small',
         drinkUnits: 1.5,
-        price: 4.50,
+        price: '4.50',
         date: 'Fri May 24 2019'
     }
 ])
+
+db.settings.insertOne(
+    {
+        currentSpend: 100,
+        saveAmount: 20,
+        date: 'Fri May 24 2019'
+    }
+)
