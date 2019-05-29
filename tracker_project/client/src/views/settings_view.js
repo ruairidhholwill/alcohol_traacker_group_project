@@ -3,6 +3,7 @@ const PubSub = require('../helpers/pub_sub.js')
 const SettingsView = function(element, container) {
   this.element = element;
   this.container = container;
+  this.toggleState = false
 }
 
 SettingsView.prototype.bindEvents = function () {
@@ -13,21 +14,26 @@ SettingsView.prototype.bindEvents = function () {
     event.preventDefault();
     const newSettings = this.creatSettings(event.target);
     PubSub.publish('SettingsView:settings-submitted', newSettings)
-    this.hideSettingsView()
+    // this.hideSettingsView()
   })
 };
 
 SettingsView.prototype.toggleLogoSettings = function () {
   const checkboxElement = document.getElementById("settings-logo-toggle")
   checkboxElement.addEventListener('click', () => {
-    console.log(checkboxElement.checked)
-    if (checkboxElement.checked === true) {
+
+    // console.log(checkboxElement.checked)
+    if (this.toggleState === true) {
       document.getElementById('settings').style.display = 'block';
       document.getElementById('logo').style.display = 'none';
+      console.log(this.toggleState)
+      this.toggleState = false;
+
       // PubSub.publish('DrinksListView:toggle-check');
     }else {
       document.getElementById('settings').style.display = 'none';
       document.getElementById('logo').style.display = 'block';
+      this.toggleState = true;
     }
   })
 };
@@ -41,12 +47,12 @@ SettingsView.prototype.toggleLogoSettings = function () {
 //   }
 // };
 
-SettingsView.prototype.hideSettingsView = function () {
-  const element = document.getElementById("settings");
-  setTimeout(function() {
-    element.style.display = "none";
-  }, 500);
-}
+// SettingsView.prototype.hideSettingsView = function () {
+//   const element = document.getElementById("settings");
+//   setTimeout(function() {
+//     element.style.display = "none";
+//   }, 500);
+// }
 
 
 // SettingsView.prototype.hideSettingsView = function () {
