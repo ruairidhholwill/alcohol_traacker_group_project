@@ -32,7 +32,7 @@ SettingsView.prototype.hideSettingsView = function () {
   element.innerHTML = "Settings Submitted!";
   setTimeout(function() {
     element.style.display = "none";
-  }, 500);
+  }, 2000);
 }
 
 
