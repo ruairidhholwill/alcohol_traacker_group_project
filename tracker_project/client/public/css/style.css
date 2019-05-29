@@ -90,7 +90,7 @@ input[type=radio] {
 }
 
 .form-label {
-  color: #A1AEBD;
+  color: #434348;
   display: inline-block;
   cursor: pointer;
   /* font-weight: bold; */
@@ -100,7 +100,7 @@ input[type=radio] {
 
 input[type=radio]:checked + label{
   color: white;
-  background: #A1AEBD;
+  background: #4e5c68;
 }
 
 /* label + input[type=radio] + label {
@@ -109,7 +109,7 @@ input[type=radio]:checked + label{
 
 #drink-type-selection {
   width: inherit;
-  border: solid 3px #A1AEBD;
+  border: solid 3px #434348;
   display: inline-block;
   justify-content: space-around;
   /* margin-left: auto;
@@ -121,7 +121,7 @@ input[type=radio]:checked + label{
 
 #size-selection {
   width: inherit;
-  border: solid 3px #A1AEBD;
+  border: solid 3px #434348;
   display: inline-block;
   justify-content: space-around;
   margin-left: auto;
@@ -133,8 +133,8 @@ input[type=radio]:checked + label{
 }
 
 #submit-btn {
-  background-color: #A1AEBD;
-  border: solid 3px #A1AEBD;
+  background-color: #434348;
+  border: solid 3px #434348;
   border-radius: 50px;
   color: white;
   padding: 5px 20px;
