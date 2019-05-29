@@ -23,9 +23,9 @@ FormView.prototype.bindEvents = function () {
     this.formContainer.addEventListener('submit', (event) => {
       event.preventDefault();
       if (this.updateMode) {
-        const updatedDrink = this.createDrinkInfo(event.target);
+        const updatedDrinkBody = this.createDrinkInfo(event.target);
         // console.log(updatedDrink)
-        PubSub.publish('FormView:updateID-submitted', this.drinkUpdateID);
+        const updatedDrink = {id: this.drinkUpdateID, body: updatedDrinkBody}
         PubSub.publish('FormView:update-submitted', updatedDrink);
         this.resetNumberInputs();
         this.updateMode = false;
@@ -64,13 +64,13 @@ FormView.prototype.createSizeSelectors = function (sizes) {
         const sizeLabel = document.createElement('label');
         sizeLabel.innerHTML = size;
         const sizeSelect = document.createElement('input');
+        sizeSelect.required = true;
         sizeSelect.type = 'radio';
         sizeSelect.name = 'size';
         sizeSelect.id = size;
         sizeSelect.value = size;
         this.sizeContainer.appendChild(sizeSelect)
         this.sizeContainer.appendChild(sizeLabel)
-        // console.log(sizeSelect.value)
     })
 }
 
@@ -90,7 +90,9 @@ FormView.prototype.createDrinkInfo = function (form) {
   if (form.pence.value.length === 1) {
     form.pence.value = '0' + form.pence.value;
   }
-  const price = `${form.pounds.value}.${form.pence.value}`
+
+  const priceString = `${form.pounds.value}.${form.pence.value}`
+  const priceNum = parseFloat(priceString)
 
   let drinkUnits = new UnitHelper(form.drink.value, form.size.value);
   // console.log('x', drinkUnits)
@@ -101,9 +103,9 @@ FormView.prototype.createDrinkInfo = function (form) {
     drinkType: form.drink.value,
     drinkSize: form.size.value,
     drinkUnits: drinkUnits,
-    price: parseFloat(price)
+    price: priceNum.toFixed(2)
   }
-  // console.log(newDrink.drinkUnits)
+  console.log('PARSE', typeof newDrink.price)
   return newDrink;
 };
 

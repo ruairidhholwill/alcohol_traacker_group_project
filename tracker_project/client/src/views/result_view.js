@@ -14,9 +14,9 @@ ResultsView.prototype.bindEvents = function () {
       this.createSpentView(event.detail)
     })
 
-    PubSub.subscribe('Results:savings-progress', (event) => {
-      this.createOverUnderView(event.detail)
-    })
+    // PubSub.subscribe('Results:savings-progress', (event) => {
+    //   this.createOverUnderView(event.detail)
+    // })
   }
 
 ResultsView.prototype.createGoalView = function(event) {
@@ -29,9 +29,9 @@ ResultsView.prototype.createSpentView = function(event) {
     spentAmount.textContent = `Spent: £${event}`  
 }
 
-ResultsView.prototype.createOverUnderView = function(event) {
-    const OverUnderAmount = document.querySelector('#over-under');
-    OverUnderAmount.textContent = `Budget Left: £${event}`
-    }  
+// ResultsView.prototype.createOverUnderView = function(event) {
+//     const OverUnderAmount = document.querySelector('#over-under');
+//     OverUnderAmount.textContent = `Budget Left: £${event}`
+//     }  
 
   module.exports = ResultsView;

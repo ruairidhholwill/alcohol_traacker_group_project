@@ -6,7 +6,6 @@ const Booze = function (url) {
     this.url = url;
     this.request = new RequestHelper(this.url)
     this.allData = []
-    this.updateID = ""
 };
 
 Booze.prototype.bindEvents = function() {
@@ -27,12 +26,13 @@ Booze.prototype.bindEvents = function() {
     console.log('this.find', event.detail)
   })
 
-  PubSub.subscribe('FormView:updateID-submitted', (event) => {
-    this.updateID = event.detail
-    console.log('updateID', this.updateID)
-    PubSub.subscribe('FormView:update-submitted', (event) => {
-      this.update(event.detail, this.updateID);
-    })
+
+  PubSub.subscribe('FormView:update-submitted', (event) => {
+    this.update(event.detail.body, event.detail.id);
+  })
+
+  PubSub.subscribe('Settings:data-loaded', (event) => {
+    this.getData()
   })
 
 }

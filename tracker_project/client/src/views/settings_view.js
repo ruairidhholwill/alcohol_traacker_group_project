@@ -7,14 +7,16 @@ const SettingsView = function(element, container) {
 
 SettingsView.prototype.bindEvents = function () {
   this.element.addEventListener('click', () => {
+    const element = document.getElementById("settings");
+    console.log('ELEMENT', element)
     this.toggleSettingsView()
   })
 
   this.container.addEventListener('submit', (event) => {
     event.preventDefault();
     const newSettings = this.creatSettings(event.target);
-    console.log(newSettings);
     PubSub.publish('SettingsView:settings-submitted', newSettings)
+    this.hideSettingsView()
   })
 };
 
@@ -26,6 +28,19 @@ SettingsView.prototype.toggleSettingsView = function () {
     element.style.display = "none";
   }
 };
+
+SettingsView.prototype.hideSettingsView = function () {
+  const element = document.getElementById("settings");
+  setTimeout(function() {
+    element.style.display = "none";
+  }, 500);
+}
+
+
+// SettingsView.prototype.hideSettingsView = function () {
+//   const element = document.getElementById("settings");
+//   element.style.display = "none";
+// }
 
 SettingsView.prototype.creatSettings = function (form) {
   const newSettings = {

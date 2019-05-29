@@ -1,9 +1,10 @@
 <html lang="en">
 <head>
-  <meta charset="UTF-8"></meta>
-  <script src='js/bundle.js'></script>
-  <link rel="stylesheet" href="css/style.css">
-  <title>Booze Tracker</title>
+    <meta charset="UTF-8"></meta>
+    <script src='js/bundle.js'></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Booze Tracker</title>
 </head>
 <body>
 <header>
@@ -42,53 +43,50 @@ x.style.display = "none";
 <div id="form-div">
   <form id="drink-form">
     <div id="drink-type-selection">
-      <input type="radio" id="beer" name="drink" value="beer" checked> Beer
-      <input type="radio" id="wine" name="drink" value="wine"> Wine
-      <input type="radio" id="spirits" name="drink" value="spirits"> Spirits
+        <input type="radio" id="beer" name="drink" value="beer" checked required> Beer
+        <input type="radio" id="wine" name="drink" value="wine"> Wine
+        <input type="radio" id="spirits" name="drink" value="spirits"> Spirits
     </div>
     <div id="size-selection">
 
     </div>
     <div id="price-input">
-      <label for="price-input">Price:</label>
-      <input id="pounds" type="number" min='0'>
-      <input id="pence" type="number" min='0' max='99'>
+        <label for="price-input">Price:</label>
+        <input id="pounds" type="number" min='0' value=0>
+        <input id="pence" type="number" min='0' max='99'>
     </div>
 
     <input type="submit" value="Submit">
-  </form>
-</div>
+   </form>
+   </div>
 
 
-<div id="list-div">
-  <div id="toggle-list">
-    <input type="checkbox" id="list-chart-toggle">
-  </div>
-  <div id="list-view">
 
-<!-- Work on later -->
-    <thead>
-      <tr>
-        <th>Drink Type</th>
-        <th>Size</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <table id="list-table">
 
-    </table>
-  </div>
-  <div id="chart-view"></div>
-</div>
+   <div id="list-div">
+    <div id="toggle-list">
+      <input type="checkbox" id="list-chart-toggle">
+    </div>
+    <div id="list-view">
+      <table id="list-table">
 
-<div id="tracker-details">
-  <div id="goal">Goal:</div>
-  <div id="total-spent">Total Spent:</div>
-  <!-- <div id="over-under">Over Under:</div> -->
-</div>
+      </table>
+    </div>
+    <div id="chart-view" style="width:100%; height:400px; display:none"></div>
+   </div>
 
-<div id="chartContainer" style="height: 400px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
+
+
+   <div id="tracker-details">
+    <div id="goal">Goal:</div>
+    <div id="total-spent">Total Spent:</div>
+    <div id="over-under">Over Under:</div>
+   </div>
+
+   <div id="chartContainer" style="height: 400px; width: 100%;"></div>
+   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
 </body>

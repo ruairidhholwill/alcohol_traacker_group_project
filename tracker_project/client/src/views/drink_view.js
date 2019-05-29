@@ -41,7 +41,13 @@ DrinkView.prototype.render = function(drinkInfo){
     // const updateButton = this.createUpdateButton(drink._id)
     // updateButton.innerHTML = 'Update me'
     // drinkContainer.appendChild(updateButton)
+    const deleteButton = this.createDeleteButton(drinkInfo._id)
+    deleteButton.innerHTML = 'delete'
+    drinkContainer.appendChild(deleteButton);
 
+    const updateButton = this.createUpdateButton(drinkInfo._id)
+    updateButton.innerHTML = 'Update'
+    drinkContainer.appendChild(updateButton)
 
     this.container.appendChild(drinkContainer)
 }
