@@ -4,7 +4,7 @@ const UnitChart = function(container){
     this.container = container;
     this.units = 0
     this.colour = "yellow"
-    this.statement = "The NHS recommend the max alcohol unit consumption(student exemptions apply) as"
+    // this.statement = "The NHS recommend the max alcohol unit consumption(student exemptions apply) as"
 }
 
 
@@ -42,7 +42,8 @@ UnitChart.prototype.render = function(units){
 
         animationEnabled: true,
         title: {
-            text: "Alcohol Unit Tracker"  
+            text: "Alcohol Unit Tracker",
+            fontFamily: "Roboto"
                     
         },
         data: [{

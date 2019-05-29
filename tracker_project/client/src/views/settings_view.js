@@ -19,7 +19,7 @@ SettingsView.prototype.bindEvents = function () {
 };
 
 SettingsView.prototype.toggleLogoSettings = function () {
-  const checkboxElement = document.getElementById("settings-logo-toggle")
+  const checkboxElement = document.getElementById("settings-label")
   checkboxElement.addEventListener('click', () => {
 
     // console.log(checkboxElement.checked)

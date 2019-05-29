@@ -61,8 +61,8 @@ ChartView.prototype.render = function (data, goal, spend) {
 
         animationEnabled: true,
         title: {
-            text: "Money Tracker"  
-                    
+            text: "Money Tracker",
+            fontFamily: "Roboto"
         },
         data: [{
             type: "pie",
@@ -73,10 +73,10 @@ ChartView.prototype.render = function (data, goal, spend) {
 
             dataPoints: [
                 {y: `${this.overage}`, label:"Eating into planned savings", color: "red"},
-                {y: `${formattedNumbers.goal}`, label: "Planned savings", color: "green"},
+                {y: `${formattedNumbers.goal}`, label: "Planned savings", color: "#96E082"},
                
-                {y: `${formattedNumbers.data}`, label: "Current spend", color: "blue"},
-                {y: ( `${this.graphTotalMinusGoal}`- `${formattedNumbers.data}`), label: "Remaining to spend"}
+                {y: `${formattedNumbers.data}`, label: "Current spend", color: "#7CB5EC"},
+                {y: ( `${this.graphTotalMinusGoal}`- `${formattedNumbers.data}`), label: "Remaining to spend", color: "#D5EDEC"}
 
             ]
         }]

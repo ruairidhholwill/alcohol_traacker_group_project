@@ -21,12 +21,12 @@ ResultsView.prototype.bindEvents = function () {
 
 ResultsView.prototype.createGoalView = function(event) {
     const goalAmount = document.querySelector('#goal');
-    goalAmount.textContent = `Goal: £${event}`  
+    goalAmount.textContent = `£${event}`  
 }
 
 ResultsView.prototype.createSpentView = function(event) {
     const spentAmount = document.querySelector('#total-spent');
-    spentAmount.textContent = `Spent: £${event}`  
+    spentAmount.textContent = `£${event}`  
 }
 
 // ResultsView.prototype.createOverUnderView = function(event) {
