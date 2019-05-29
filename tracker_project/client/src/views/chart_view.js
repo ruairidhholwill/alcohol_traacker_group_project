@@ -8,7 +8,6 @@ const ChartView = function(container, data){
     this.calcSpend = 0
     this.currentSpend = 0
     this.graphTotalMinusGoal = 0
-    this.titleGoal = goal
     this.overage = 0
     this.reduceGoal = 0
 }
@@ -19,18 +18,14 @@ ChartView.prototype.bindEvents = function(){
 
     PubSub.subscribe('Results:saving-goal', (event)=>{
         this.goal = event.detail
-        //console.log('xxthis.goal', event.detail)
     })
 
     PubSub.subscribe('Results:current-spend-amount', (event)=>{
-    //console.log('Results:current-spend-amount', event.detail)
     this.currentSpend = event.detail
     })
 
     PubSub.subscribe('Results:total-spent-calculated', (event)=>{
-        //console.log('Results:total-spent-calculated', event.detail)
         this.calcSpend = event.detail
-        //console.log('this.calc', this.calcSpend)
         this.render(this.calcSpend, this.goal, this.currentSpend)
     })
 }
@@ -38,51 +33,29 @@ ChartView.prototype.bindEvents = function(){
 
 ////////CIRCULAR CHART/////////////////////////////////////////////////////////////
 
-// ChartView.prototype.graphNumberNonLogic = function(data, goal, spend){
-//     console.log('xxxxxxxxxxxx', goal)
-//    console.log('yyyyyyyyyyyy', data)
-//    console.log('zzzzzzzzzzzz', spend)
-//   this.graphTotalMinusGoal = spend - goal
-//   console.log('graphTotalMinusGoal', this.graphTotalMinusGoal)
-//   console.log('spend', spend)
-//   console.log('data', data)
+ChartView.prototype.graphNumberNonLogic = function(data, goal, spend){
 
-//   if ( this.graphTotalMinusGoal - data <= 0) {
-//       console.log('spend-data', this.graphTotalMinusGoal - data)
-//       this.overage = this.graphTotalMinusGoal  - data
-//       console.log('overage', this.overage)
+  this.graphTotalMinusGoal = spend - goal
 
-//       this.reduceGoal = (parseFloat(goal) + parseFloat(this.overage));
-//       console.log('reduceGoal', this.reduceGoal)
-//       goal = this.reduceGoal
-//       console.log('goal after reduceGoal', this.reduceGoal)
-//       data = (parseFloat(data) + parseFloat(this.overage))
-//       console.log('data after reduce', data)
+  if ( this.graphTotalMinusGoal - data <= 0) {
       
-//     }
-// }
+      this.overage = this.graphTotalMinusGoal  - data
+      this.reduceGoal = (parseFloat(goal) + parseFloat(this.overage));
+      data = (parseFloat(data) + parseFloat(this.overage))
+      goal = this.reduceGoal
+    }
+    return {"goal": goal, "data": data}; //this has been made into an object as it is returning 
+    //more than one item. We make this function equal to 'const formattedNumbers' where it
+    //is being called and the object keys can then be called.
+    //This works because when the if statement is not actioned the it just returns the 
+    //original data in the object.
+    //
+}
 
 ChartView.prototype.render = function (data, goal, spend) {
 
-    // console.log('xxxxxxxxxxxx', goal)
-    // console.log('yyyyyyyyyyyy', data)
-    // console.log('zzzzzzzzzzzz', spend)
-
-   
-    this.graphTotalMinusGoal = spend - goal
-    // console.log('graphTotalMinusGoal', this.graphTotalMinusGoal)
-    // console.log('spend', spend)
-    // console.log('data', data)
-    if ( this.graphTotalMinusGoal - data <= 0) {
-        //console.log('spend-data', this.graphTotalMinusGoal - data)
-        this.overage = this.graphTotalMinusGoal  - data
-        //console.log('overage', this.overage)
-        this.reduceGoal = (parseFloat(goal) + parseFloat(this.overage));
-        goal = this.reduceGoal
-        data = (parseFloat(data) + parseFloat(this.overage))
-        //console.log('reduceGoal', this.reduceGoal)
-      }
-    //this.graphNumberNonLogic(data, goal, spend);
+    
+    const formattedNumbers = this.graphNumberNonLogic(data, goal, spend);
 
     var chart = new CanvasJS.Chart("chartContainer", {
 
@@ -100,10 +73,10 @@ ChartView.prototype.render = function (data, goal, spend) {
 
             dataPoints: [
                 {y: `${this.overage}`, label:"Eating into planned savings", color: "red"},
-                {y: `${goal}`, label: "Planned savings", color: "green"},
+                {y: `${formattedNumbers.goal}`, label: "Planned savings", color: "green"},
                
-                {y: `${data}`, label: "Current spend", color: "blue"},
-                {y: ( `${this.graphTotalMinusGoal}`- `${data}`), label: "Remaining to spend"}
+                {y: `${formattedNumbers.data}`, label: "Current spend", color: "blue"},
+                {y: ( `${this.graphTotalMinusGoal}`- `${formattedNumbers.data}`), label: "Remaining to spend"}
 
             ]
         }]
