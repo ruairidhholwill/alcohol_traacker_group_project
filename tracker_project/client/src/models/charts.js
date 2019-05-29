@@ -1,11 +1,11 @@
-const PubSub = require('../helpers/pub_sub.js')
+const PubSub = require('../helpers/pub_sub.js');
 
 const Charts = function() {
   this.allData = []
   this.dates = []
   this.pounds = []
   this.units = []
-}
+};
 
 Charts.prototype.bindEvents = function () {
   PubSub.subscribe('Booze:data-loaded', (events) => {

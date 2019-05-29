@@ -1,6 +1,6 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-const DailyChart = function (container){
+const DailyChart = function (container) {
   this.container = container;
   this.dates = []
   this.pounds = []
@@ -20,33 +20,30 @@ const DailyChart = function (container){
 
   DailyChart.prototype.renderChart = function (dates, pounds, units) {
     Highcharts.chart('chart-view', {
-           chart: {
-               type: 'column'
-           },
-           title: {
-               text: 'Spending / Units Intake'
-           },
-           xAxis: {
-               categories: dates
-           },
-           yAxis: {
-               title: {
-                   text: '£ / Units'
-               }
-           },
-           series: [{
-               name: 'Pounds',
-               data: pounds
-           }, {
-               name: 'Units',
-               data: units
-           }]
-       });
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Spending / Units Intake'
+      },
+      xAxis: {
+        categories: dates
+      },
+      yAxis: {
+        title: {
+          text: '£ / Units'
+        }
+      },
+      series: [{
+        name: 'Pounds',
+        data: pounds
+      }, {
+        name: 'Units',
+        data: units
+      }]
+    });
   };
 
-}
-
-
-
+};
 
 module.exports = DailyChart;
