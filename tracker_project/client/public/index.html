@@ -15,20 +15,24 @@
   <input type="checkbox" id="settings-logo-toggle">
 </div>
 
-  <!-- <h3 id="settings-header">settings</h3> -->
+    <!-- <h3 id="settings-header">settings</h3> -->
+    <div id="settings-logo-toggle">
+      <input type="button" id="settings-logo-toggle" value="settings">
+    </div>
 
-  <div id="settings">
-    <form id="settings-form">
-      <p>how much are you spending on booze?</p>
-      <input type="text" id="pounds_spending">
-      <p>how much do you want to save?</p>
-      <input type="text" id="pounds_saving">
-      <input type="submit" value="submit">
-    </form>
-  </div>
+    <div id="settings" style="display:none">
+      <form id="settings-form">
+        <p>how much are you spending on booze?</p>
+        <input type="number" id="pounds_spending">
+        <p>how much do you want to save?</p>
+        <input type="number" id="pounds_saving">
+        <input type="submit" value="submit">
+      </form>
+    </div>
 
-
-<div id="logo"></div>
+    <div id="logo">
+      <h1>BOOZE TRACKER</h1>
+    </div>
 
 
 <div id="form-div">
