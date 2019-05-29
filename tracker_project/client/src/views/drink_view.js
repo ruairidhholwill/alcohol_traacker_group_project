@@ -14,9 +14,9 @@ this.container = container;
 DrinkView.prototype.render = function(drinkInfo){
 
 
-
     const drinkContainer = document.createElement('tr')
     drinkContainer.id = 'drink';
+
 
     const drink = this.createTableData(drinkInfo.drinkType)
     drinkContainer.appendChild(drink);
