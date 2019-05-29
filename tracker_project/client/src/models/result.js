@@ -17,7 +17,8 @@ Results.prototype.bindEvents = function () {
     })
 
     PubSub.subscribe('Booze:data-loaded', (event) => {
-        this.calcTotalSpent(event.detail)
+        this.calcTotalUnits(event.detail);
+        this.calcTotalSpent(event.detail);
     })
 
     // PubSub.subscribe('Booze:data-loaded', (event) => {
@@ -46,6 +47,17 @@ Results.prototype.calcTotalSpent = function (data) {
       PubSub.publish('Results:total-spent-calculated', total)
       return total
   };
+
+  Results.prototype.calcTotalUnits = function (data) {
+      console.log(data)
+      let total = 0 
+      const units = data
+      const unitsSum = units.forEach((drink) => {
+          total += drink.drinkUnits
+      })
+      PubSub.publish('Results:total-units-calculated', total)
+      return total
+  }
 
 // Results.prototype.calculateSavingsOverOrUnder = function (data) {
 //     const amountSpent = this.calcTotalSpent(data)
