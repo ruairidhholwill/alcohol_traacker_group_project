@@ -31,10 +31,9 @@ SettingsView.prototype.toggleSettingsView = function () {
 
 SettingsView.prototype.hideSettingsView = function () {
   const element = document.getElementById("settings");
-  element.innerHTML = "Settings Submitted!";
   setTimeout(function() {
     element.style.display = "none";
-  }, 2000);
+  }, 500);
 }
 
 
