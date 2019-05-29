@@ -32,10 +32,10 @@ FormView.prototype.bindEvents = function () {
       } else {
         newDrink = this.createDrinkInfo(event.target);
         PubSub.publish('BoozeFormView:booze-submitted', newDrink);
-        // console.log(newDrink)
         event.target.reset()//empties the text fields.
         // const unit = new UnitHelper(newDrink.drinkType, newDrink.drinkSize);
         // console.log(unit.sizeToUnits())
+        this.renderDrinkSizeDefaults('beer')
       }
 
 
@@ -62,7 +62,7 @@ FormView.prototype.createSizeSelectors = function (sizes) {
     this.sizeContainer.innerHTML = '';
     sizes.forEach((size) => {
         const sizeLabel = document.createElement('label');
-        sizeLabel.innerHTML = size;
+        sizeLabel.innerHTML = size.charAt(0).toUpperCase() + size.slice(1);
         sizeLabel.htmlFor = size;
         const sizeSelect = document.createElement('input');
         sizeSelect.required = true;

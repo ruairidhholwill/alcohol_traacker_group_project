@@ -54,7 +54,7 @@ DrinkView.prototype.render = function(drinkInfo){
 
 DrinkView.prototype.createTableData = function(textContent) {
     const data = document.createElement('td');
-    data.textContent = textContent;
+    data.textContent = textContent.charAt(0).toUpperCase() + textContent.slice(1);
     return data;
 }
 
