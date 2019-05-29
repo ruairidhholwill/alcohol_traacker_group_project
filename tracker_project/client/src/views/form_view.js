@@ -63,7 +63,7 @@ FormView.prototype.createSizeSelectors = function (sizes) {
     sizes.forEach((size) => {
         const sizeLabel = document.createElement('label');
         sizeLabel.innerHTML = size;
-        const sizeSelect = document.createElement('input');
+        const sizeSelect = document.createElement('input');f
         sizeSelect.required = true;
         sizeSelect.type = 'radio';
         sizeSelect.name = 'size';
@@ -105,7 +105,6 @@ FormView.prototype.createDrinkInfo = function (form) {
     drinkUnits: drinkUnits,
     price: priceNum.toFixed(2)
   }
-  console.log('PARSE', typeof newDrink.price)
   return newDrink;
 };
 
