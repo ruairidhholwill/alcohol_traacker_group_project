@@ -12,7 +12,9 @@ const DailyChart = function (container){
       dates = event.detail.dates;
       pounds = event.detail.pounds;
       units = event.detail.units;
-      this.renderChart(dates, pounds, units);
+      PubSub.subscribe('DrinksListView:toggle-check', () => {
+        this.renderChart(dates, pounds, units);
+      })
     })
   };
 
