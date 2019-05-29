@@ -47,7 +47,7 @@
    <div id="form-div">
    <form id="drink-form">
     <div id="drink-type-selection">
-        <input type="radio" id="beer" name="drink" value="beer" checked> Beer
+        <input type="radio" id="beer" name="drink" value="beer" checked required> Beer
         <input type="radio" id="wine" name="drink" value="wine"> Wine
         <input type="radio" id="spirits" name="drink" value="spirits"> Spirits
     </div>
@@ -56,7 +56,7 @@
     </div>
     <div id="price-input">
         <label for="price-input">Price:</label>
-        <input id="pounds" type="number" min='0'>
+        <input id="pounds" type="number" min='0' value=0>
         <input id="pence" type="number" min='0' max='99'>
     </div>
 
