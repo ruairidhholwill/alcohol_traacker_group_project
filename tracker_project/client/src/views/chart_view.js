@@ -3,13 +3,11 @@ const PubSub = require('../helpers/pub_sub.js')
 const RequestHelper = require('../helpers/request_helper.js')
 
 const ChartView = function(container, data){
-    this.container = container
-    //this.data = data  
+    this.container = container 
     this.goal = 0
     this.calcSpend = 0
     this.currentSpend = 0
     this.graphTotalMinusGoal = 0
-    this.titleGoal = goal
     this.overage = 0
     this.reduceGoal = 0
 }
@@ -20,22 +18,14 @@ ChartView.prototype.bindEvents = function(){
 
     PubSub.subscribe('Results:saving-goal', (event)=>{
         this.goal = event.detail
-        console.log('xxthis.goal', event.detail)
-        
-       // window.onload(this.calcSpend)
     })
 
     PubSub.subscribe('Results:current-spend-amount', (event)=>{
-    console.log('Results:current-spend-amount', event.detail)
     this.currentSpend = event.detail
     })
 
     PubSub.subscribe('Results:total-spent-calculated', (event)=>{
-        console.log('Results:total-spent-calculated', event.detail)
-        //this.chartRender(event.detail)
         this.calcSpend = event.detail
-        console.log('this.calc', this.calcSpend)
-        //this.chartCap(this.calcSpend, this.goal)
         this.render(this.calcSpend, this.goal, this.currentSpend)
     })
 }
@@ -43,31 +33,31 @@ ChartView.prototype.bindEvents = function(){
 
 ////////CIRCULAR CHART/////////////////////////////////////////////////////////////
 
+ChartView.prototype.graphNumberNonLogic = function(data, goal, spend){
+
+  this.graphTotalMinusGoal = spend - goal
+
+  if ( this.graphTotalMinusGoal - data <= 0) {
+      
+      this.overage = this.graphTotalMinusGoal  - data
+      this.reduceGoal = (parseFloat(goal) + parseFloat(this.overage));
+      data = (parseFloat(data) + parseFloat(this.overage))
+      goal = this.reduceGoal
+    }
+    return {"goal": goal, "data": data}; //this has been made into an object as it is returning 
+    //more than one item. We make this function equal to 'const formattedNumbers' where it
+    //is being called and the object keys can then be called.
+    //This works because when the if statement is not actioned the it just returns the 
+    //original data in the object.
+    //
+}
+
 ChartView.prototype.render = function (data, goal, spend) {
 
-    console.log('xxxxxxxxxxxx', goal)
-    console.log('yyyyyyyyyyyy', data)
-    console.log('zzzzzzzzzzzz', spend)
-
-   
-    this.graphTotalMinusGoal = spend - goal
-    console.log('graphTotalMinusGoal', this.graphTotalMinusGoal)
-    console.log('spend', spend)
-    console.log('data', data)
-    if ( this.graphTotalMinusGoal - data <= 0) {
-        console.log('spend-data', this.graphTotalMinusGoal - data)
-        this.overage = this.graphTotalMinusGoal  - data
-        console.log('overage', this.overage)
-        this.reduceGoal = (parseFloat(goal) + parseFloat(this.overage));
-
-        goal = this.reduceGoal
-        data = (parseFloat(data) + parseFloat(this.overage))
-        console.log('reduceGoal', this.reduceGoal)
-      }
+    
+    const formattedNumbers = this.graphNumberNonLogic(data, goal, spend);
 
     var chart = new CanvasJS.Chart("chartContainer", {
-
-       
 
         animationEnabled: true,
         title: {
@@ -83,18 +73,18 @@ ChartView.prototype.render = function (data, goal, spend) {
 
             dataPoints: [
                 {y: `${this.overage}`, label:"Eating into planned savings", color: "red"},
-                {y: `${goal}`, label: "Planned savings", color: "green"},
+                {y: `${formattedNumbers.goal}`, label: "Planned savings", color: "green"},
                
-                {y: `${data}`, label: "Current spend", color: "blue"},
-                {y: ( `${this.graphTotalMinusGoal}`- `${data}`), label: "Remaining to spend"}
+                {y: `${formattedNumbers.data}`, label: "Current spend", color: "blue"},
+                {y: ( `${this.graphTotalMinusGoal}`- `${formattedNumbers.data}`), label: "Remaining to spend"}
 
-                // {y: `${spend}- ${data}`, label: "Current spend", color: "blue"},
-                //  {y: ( (`${spend}`- `${data}`) - `${goal}`) , label: "Remaining to spend"}
             ]
         }]
     });
     chart.render();
 
     }
+
+    
 
     module.exports = ChartView

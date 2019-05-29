@@ -9,6 +9,7 @@ const Charts = require('./models/charts.js')
 const ResultsView = require('./views/result_view.js')
 const Results = require('./models/result.js')
 const DailyChart = require('./views/daily_info_chart_view.js')
+const UnitChart = require('./models/unit_chart.js')
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('JavaScript Loaded')
@@ -18,9 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
     resultsView.bindEvents();
 
 
-    // const chartContainer = document.querySelector('div#chart-view')
-    // const chartView  = new ChartView(chartContainer);
-    // chartView.bindEvents();
+    const chartContainer = document.querySelector('div#chart-view')
+    const chartView  = new ChartView(chartContainer);
+    chartView.bindEvents();
+
+    const unitChartContainer = document.querySelector('div#unit-chart-view')
+    const unitChartView = new UnitChart(unitChartContainer);
+    unitChartView.bindEvents();
 
     const results = new Results()
     results.bindEvents();
