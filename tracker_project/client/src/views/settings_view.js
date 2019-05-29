@@ -29,8 +29,17 @@ SettingsView.prototype.toggleSettingsView = function () {
 
 SettingsView.prototype.hideSettingsView = function () {
   const element = document.getElementById("settings");
-  element.style.display = "none";
+  element.innerHTML = "Settings Submitted!";
+  setTimeout(function() {
+    element.style.display = "none";
+  }, 500);
 }
+
+
+// SettingsView.prototype.hideSettingsView = function () {
+//   const element = document.getElementById("settings");
+//   element.style.display = "none";
+// }
 
 SettingsView.prototype.creatSettings = function (form) {
   const newSettings = {
