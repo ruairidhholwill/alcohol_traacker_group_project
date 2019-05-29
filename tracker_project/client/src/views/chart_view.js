@@ -3,8 +3,7 @@ const PubSub = require('../helpers/pub_sub.js')
 const RequestHelper = require('../helpers/request_helper.js')
 
 const ChartView = function(container, data){
-    this.container = container
-    //this.data = data  
+    this.container = container 
     this.goal = 0
     this.calcSpend = 0
     this.currentSpend = 0
@@ -20,22 +19,18 @@ ChartView.prototype.bindEvents = function(){
 
     PubSub.subscribe('Results:saving-goal', (event)=>{
         this.goal = event.detail
-        console.log('xxthis.goal', event.detail)
-        
-       // window.onload(this.calcSpend)
+        //console.log('xxthis.goal', event.detail)
     })
 
     PubSub.subscribe('Results:current-spend-amount', (event)=>{
-    console.log('Results:current-spend-amount', event.detail)
+    //console.log('Results:current-spend-amount', event.detail)
     this.currentSpend = event.detail
     })
 
     PubSub.subscribe('Results:total-spent-calculated', (event)=>{
-        console.log('Results:total-spent-calculated', event.detail)
-        //this.chartRender(event.detail)
+        //console.log('Results:total-spent-calculated', event.detail)
         this.calcSpend = event.detail
-        console.log('this.calc', this.calcSpend)
-        //this.chartCap(this.calcSpend, this.goal)
+        //console.log('this.calc', this.calcSpend)
         this.render(this.calcSpend, this.goal, this.currentSpend)
     })
 }
@@ -45,24 +40,23 @@ ChartView.prototype.bindEvents = function(){
 
 ChartView.prototype.render = function (data, goal, spend) {
 
-    console.log('xxxxxxxxxxxx', goal)
-    console.log('yyyyyyyyyyyy', data)
-    console.log('zzzzzzzzzzzz', spend)
+    // console.log('xxxxxxxxxxxx', goal)
+    // console.log('yyyyyyyyyyyy', data)
+    // console.log('zzzzzzzzzzzz', spend)
 
    
     this.graphTotalMinusGoal = spend - goal
-    console.log('graphTotalMinusGoal', this.graphTotalMinusGoal)
-    console.log('spend', spend)
-    console.log('data', data)
+    // console.log('graphTotalMinusGoal', this.graphTotalMinusGoal)
+    // console.log('spend', spend)
+    // console.log('data', data)
     if ( this.graphTotalMinusGoal - data <= 0) {
-        console.log('spend-data', this.graphTotalMinusGoal - data)
+        //console.log('spend-data', this.graphTotalMinusGoal - data)
         this.overage = this.graphTotalMinusGoal  - data
-        console.log('overage', this.overage)
+        //console.log('overage', this.overage)
         this.reduceGoal = (parseFloat(goal) + parseFloat(this.overage));
-
         goal = this.reduceGoal
         data = (parseFloat(data) + parseFloat(this.overage))
-        console.log('reduceGoal', this.reduceGoal)
+        //console.log('reduceGoal', this.reduceGoal)
       }
 
     var chart = new CanvasJS.Chart("chartContainer", {
@@ -88,8 +82,6 @@ ChartView.prototype.render = function (data, goal, spend) {
                 {y: `${data}`, label: "Current spend", color: "blue"},
                 {y: ( `${this.graphTotalMinusGoal}`- `${data}`), label: "Remaining to spend"}
 
-                // {y: `${spend}- ${data}`, label: "Current spend", color: "blue"},
-                //  {y: ( (`${spend}`- `${data}`) - `${goal}`) , label: "Remaining to spend"}
             ]
         }]
     });

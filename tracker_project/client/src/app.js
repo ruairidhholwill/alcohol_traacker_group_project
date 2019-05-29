@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const chartView  = new ChartView(chartContainer);
     chartView.bindEvents();
 
+    const
+
     const results = new Results()
     results.bindEvents();
 
