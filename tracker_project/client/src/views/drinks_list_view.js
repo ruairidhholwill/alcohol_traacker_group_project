@@ -11,7 +11,7 @@ DrinksListView.prototype.bindEvents = function(){
     //console.log('subscibed to:', event);
     this.render(event.detail)
   })
-  this.toggleListChart();  
+  this.toggleListChart();
 }
 
 DrinksListView.prototype.toggleListChart = function () {
@@ -23,7 +23,7 @@ DrinksListView.prototype.toggleListChart = function () {
       document.getElementById('chart-view').style.display = 'block';
       PubSub.publish('DrinksListView:toggle-check');
     }else {
-      document.getElementById('list-view').style.display = 'block';
+      document.getElementById('list-view').style.display = 'flex';
       document.getElementById('chart-view').style.display = 'none';
     }
   })

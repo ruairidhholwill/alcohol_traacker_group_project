@@ -30,7 +30,7 @@ DrinkView.prototype.render = function(drinkInfo){
     // const units = this.createHeading(drink.drinkUnits)
     // drinkContainer.appendChild(units);
 
-    const price = this.createTableData(drinkInfo.price)
+    const price = this.createTableDataPrice(drinkInfo.price)
     drinkContainer.appendChild(price);
 
     // const deleteButton = this.createDeleteButton(drink._id)
@@ -58,6 +58,12 @@ DrinkView.prototype.createTableData = function(textContent) {
     return data;
 }
 
+
+DrinkView.prototype.createTableDataPrice = function(textContent) {
+    const data = document.createElement('td');
+    data.textContent = `£ ${textContent}`;
+    return data;
+}
 
 DrinkView.prototype.createDeleteButton = function(drinkID){
     const button = document.createElement("button");
