@@ -29,7 +29,6 @@ Booze.prototype.bindEvents = function() {
   PubSub.subscribe('Settings:data-loaded', (event) => {
     this.getData()
   })
-
 };
 
 Booze.prototype.getData = function () {
