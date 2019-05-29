@@ -33,15 +33,7 @@ UnitChart.prototype.changeSegmentColour = function(){
 
 UnitChart.prototype.render = function(units){
 
-    // if (units <= 7){
-    //     this.colour = "green"
-    // }
-    // else if(units > 7 && units < 10){
-    //     this.colour = "orange"
-    // }
-    // else if(units > 10 && units < 12){
-    //     this.colour = "red"
-    // }
+
     this.changeSegmentColour();
 
     console.log("inside unit function",units)
@@ -56,7 +48,6 @@ UnitChart.prototype.render = function(units){
         data: [{
             type: "pie",
             startAngle: 180,
-           // yValueFormatString: "\"£\"##0.00",
             indexLabel: "{label} {y}",
             
 
