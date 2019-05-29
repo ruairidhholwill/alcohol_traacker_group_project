@@ -23,9 +23,9 @@ FormView.prototype.bindEvents = function () {
     this.formContainer.addEventListener('submit', (event) => {
       event.preventDefault();
       if (this.updateMode) {
-        const updatedDrink = this.createDrinkInfo(event.target);
+        const updatedDrinkBody = this.createDrinkInfo(event.target);
         // console.log(updatedDrink)
-        PubSub.publish('FormView:updateID-submitted', this.drinkUpdateID);
+        const updatedDrink = {id: this.drinkUpdateID, body: updatedDrinkBody}
         PubSub.publish('FormView:update-submitted', updatedDrink);
         this.resetNumberInputs();
         this.updateMode = false;
