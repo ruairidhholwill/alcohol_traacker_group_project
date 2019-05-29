@@ -49,6 +49,7 @@ FormView.prototype.bindEvents = function () {
       // console.log(this.updateMode)
       // console.log(this.drinkUpdateID)
     })
+
 }
 
 FormView.prototype.renderDrinkSizeDefaults = function (drinkType) {
@@ -74,6 +75,7 @@ FormView.prototype.createSizeSelectors = function (sizes) {
 
         this.sizeContainer.appendChild(sizeSelect)
         this.sizeContainer.appendChild(sizeLabel)
+
     })
 }
 
@@ -101,8 +103,7 @@ FormView.prototype.createDrinkInfo = function (form) {
   // console.log('x', drinkUnits)
   drinkUnits = drinkUnits.sizeToUnits();
   // console.log('y', drinkUnits)
-  console.log('================================================================')
-  console.log(form.drink)
+
 
   const newDrink = {
     drinkType: form.drink.value,
