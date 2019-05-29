@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Dosis');
+/* @import url('https://fonts.googleapis.com/css?family=Dosis'); */
 
-:root {
+/* :root { */
   /* generic */
-  --gutterSm: 0.4rem;
+  /* --gutterSm: 0.4rem;
   --gutterMd: 0.8rem;
   --gutterLg: 1.6rem;
   --gutterXl: 2.4rem;
@@ -19,10 +19,10 @@
   --lineHeightSm: 1.1;
   --lineHeightMd: 1.8;
   --transitionDuration: 300ms;
-  --transitionTF: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --transitionTF: cubic-bezier(0.645, 0.045, 0.355, 1); */
 
   /* floated labels */
-   --inputPaddingV: var(--gutterMd);
+   /* --inputPaddingV: var(--gutterMd);
    --inputPaddingH: var(--gutterLg);
    --inputFontSize: var(--fontSizeLg);
    --inputLineHeight: var(--lineHeightMd);
@@ -35,11 +35,16 @@
    );
    --inputTransitionDuration: var(--transitionDuration);
    --inputTransitionTF: var(--transitionTF);
-}
+} */
 
 header {
   text-align: center;
   font-size: 36px;
+}
+
+body {
+  width: 80%;
+  margin: auto;
 }
 
 #settings {
@@ -61,16 +66,16 @@ header {
   height: 150px;
 }
 
-/* #settings, p {
+#settings, p {
  color: #fff;
  font-size: var(--fontSizeMd);
  font-weight: 400; */
  /* line-height: var(--lineHeightSm); */
- /* text-align: center;
+ text-align: center;
  text-shadow: -0.1rem 0.1rem 0.2rem var(--colorPrimary800);
-} */
+}
 
-/* #settings-btn {
+#settings-btn {
   -moz-box-shadow: 0px 10px 14px -7px #276873;
 	-webkit-box-shadow: 0px 10px 14px -7px #276873;
 	box-shadow: 0px 10px 14px -7px #276873;
@@ -94,7 +99,7 @@ header {
 	padding:13px 32px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #3d768a;
-} */
+}
 
 /* #settings-btn:hover {
   background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #408c99), color-stop(1, #599bb3));
