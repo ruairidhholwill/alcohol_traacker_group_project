@@ -12,9 +12,9 @@ SettingsView.prototype.bindEvents = function () {
 
   this.container.addEventListener('submit', (event) => {
     event.preventDefault();
-    const newSettings = this.creatSettings(event.target);
+    const newSettings = this.createSettings(event.target);
     PubSub.publish('SettingsView:settings-submitted', newSettings)
-    // this.hideSettingsView()
+    this.hideSettingsView()
   })
 };
 
@@ -47,20 +47,16 @@ SettingsView.prototype.toggleLogoSettings = function () {
 //   }
 // };
 
-// SettingsView.prototype.hideSettingsView = function () {
-//   const element = document.getElementById("settings");
-//   setTimeout(function() {
-//     element.style.display = "none";
-//   }, 500);
-// }
+SettingsView.prototype.hideSettingsView = function () {
+  const element = document.getElementById("settings");
+  setTimeout(function() {
+    element.style.display = "none";
+  }, 100);
+  document.getElementById('logo').style.display = 'block';
+}
 
 
-// SettingsView.prototype.hideSettingsView = function () {
-//   const element = document.getElementById("settings");
-//   element.style.display = "none";
-// }
-
-SettingsView.prototype.creatSettings = function (form) {
+SettingsView.prototype.createSettings = function (form) {
   const newSettings = {
     currentSpend: form.pounds_spending.value,
     saveAmount: form.pounds_saving.value

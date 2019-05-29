@@ -47,7 +47,7 @@ UnitChart.prototype.render = function(units){
         },
         data: [{
             type: "pie",
-            startAngle: 180,
+            startAngle: -90,
             indexLabel: "{label} {y}",
             
 
