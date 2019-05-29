@@ -7,6 +7,8 @@ const SettingsView = function(element, container) {
 
 SettingsView.prototype.bindEvents = function () {
   this.element.addEventListener('click', () => {
+    const element = document.getElementById("settings");
+    console.log('ELEMENT', element)
     this.toggleSettingsView()
   })
 
