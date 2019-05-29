@@ -17,11 +17,21 @@
 
     <div id="settings" style="display:none">
       <form id="settings-form">
-        <p>how much are you spending on booze?</p>
-        <input type="number" id="pounds_spending">
-        <p>how much do you want to save?</p>
-        <input type="number" id="pounds_saving">
-        <input type="submit" value="submit">
+        <div>
+          <p>Approximate monthly spend on alcohol?</p>
+        </div>
+        <div>
+          <input type="number" id="pounds_spending">
+        </div>
+        <div>
+          <p>Monthly savings goal?</p>
+        </div>
+        <div>
+          <input type="number" id="pounds_spending">
+        </div>
+        <div>
+         <input type="submit" value="submit">
+        </div>
       </form>
     </div>
 
@@ -34,11 +44,11 @@
   <form id="drink-form">
     <div id="drink-type-selection">
         <input type="radio" id="beer" name="drink" value="beer" data-value="beer" checked required>
-        <label for="beer" id="radio-label" data-value="beer" >Beer</label>
+        <label class="form-label" for="beer" id="radio-label" data-value="beer" >Beer</label>
         <input type="radio" id="wine" name="drink" value="wine" data-value="wine">
-        <label for="wine" id="radio-label" data-value="wine">Wine</label>
+        <label class="form-label" for="wine" id="radio-label" data-value="wine">Wine</label>
         <input type="radio" id="spirits" name="drink" value="spirits" data-value="spirits">
-        <label for="spirits" id="radio-label" data-value="spirits">Spirit</label>
+        <label class="form-label" for="spirits" id="radio-label" data-value="spirits">Spirit</label>
     </div>
     <div id="size-selection">
 
@@ -52,13 +62,18 @@
     <input type="submit" value="Submit">
    </form>
    </div>
+   <hr>
+   <br>
 
 
 
 
    <div id="list-div">
     <div id="toggle-list">
-      <input type="checkbox" id="list-chart-toggle">
+      <label class="switch">
+        <input type="checkbox" id="list-chart-toggle">
+        <span class="slider round"></span>
+      </label>
     </div>
     <div id="list-view">
 

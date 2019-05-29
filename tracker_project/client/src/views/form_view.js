@@ -65,6 +65,7 @@ FormView.prototype.createSizeSelectors = function (sizes) {
         const sizeLabel = document.createElement('label');
         sizeLabel.innerHTML = size.charAt(0).toUpperCase() + size.slice(1);
         sizeLabel.htmlFor = size;
+        sizeLabel.className = 'form-label';
         const sizeSelect = document.createElement('input');
         sizeSelect.required = true;
         sizeSelect.checked = true;
