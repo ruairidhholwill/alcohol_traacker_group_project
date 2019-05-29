@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     resultsView.bindEvents();
 
 
-    const chartContainer = document.querySelector('div#chart-view')
-    const chartView  = new ChartView(chartContainer);
-    chartView.bindEvents();
+    // const chartContainer = document.querySelector('div#chart-view')
+    // const chartView  = new ChartView(chartContainer);
+    // chartView.bindEvents();
 
     const results = new Results()
     results.bindEvents();
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     settings.getData();
 
 
-    
+
 
     const settingsButtonElement = document.querySelector('#settings-btn');
 

@@ -8,7 +8,7 @@ Form.prototype.bindEvents = function () {
 
     this.container.addEventListener('click', (event) => {
         console.log(event.target.value);
-        const selectedDrink = event.target.value
+        const selectedDrink = event.target.getAttribute("data-value");
         const drinkSizesOutput = this.selectedDrinkSizeOutput(selectedDrink);
         PubSub.publish('Form:drink-sizes-ready', drinkSizesOutput);
     })

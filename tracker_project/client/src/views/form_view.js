@@ -63,12 +63,15 @@ FormView.prototype.createSizeSelectors = function (sizes) {
     sizes.forEach((size) => {
         const sizeLabel = document.createElement('label');
         sizeLabel.innerHTML = size;
+        sizeLabel.htmlFor = size;
         const sizeSelect = document.createElement('input');
         sizeSelect.required = true;
+        sizeSelect.checked = true;
         sizeSelect.type = 'radio';
         sizeSelect.name = 'size';
         sizeSelect.id = size;
         sizeSelect.value = size;
+
         this.sizeContainer.appendChild(sizeSelect)
         this.sizeContainer.appendChild(sizeLabel)
     })
@@ -98,6 +101,8 @@ FormView.prototype.createDrinkInfo = function (form) {
   // console.log('x', drinkUnits)
   drinkUnits = drinkUnits.sizeToUnits();
   // console.log('y', drinkUnits)
+  console.log('================================================================')
+  console.log(form.drink)
 
   const newDrink = {
     drinkType: form.drink.value,
