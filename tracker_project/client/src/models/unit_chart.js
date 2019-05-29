@@ -7,7 +7,6 @@ const UnitChart = function(container){
   this.statement = "The NHS recommend the max alcohol unit consumption(student exemptions apply) as"
 };
 
-
 UnitChart.prototype.bindEvents = function(){
   PubSub.subscribe('Results:total-units-calculated', (event)=>{
     units = event.detail
