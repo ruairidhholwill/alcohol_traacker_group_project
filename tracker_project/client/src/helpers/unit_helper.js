@@ -1,9 +1,7 @@
-//Possibily another helper filer witch is required in and provides the unit of alchol per drink/size of drink.
-
 const UnitHelper = function (drinkType, drinkSize) {
   this.drinkType = drinkType;
   this.drinkSize = drinkSize;
-}
+};
 
 UnitHelper.prototype.sizeToUnits = function () {
   if (this.drinkType === 'beer') {
@@ -29,9 +27,7 @@ UnitHelper.prototype.sizeToUnits = function () {
       return 4;
     }
   }
-}
-
-
+};
 
 // UnitHelper.prototype.sizeToUnits = function () {
 //   if (this.drinkType === 'beer') {
