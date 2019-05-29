@@ -38,6 +38,30 @@ ChartView.prototype.bindEvents = function(){
 
 ////////CIRCULAR CHART/////////////////////////////////////////////////////////////
 
+// ChartView.prototype.graphNumberNonLogic = function(data, goal, spend){
+//     console.log('xxxxxxxxxxxx', goal)
+//    console.log('yyyyyyyyyyyy', data)
+//    console.log('zzzzzzzzzzzz', spend)
+//   this.graphTotalMinusGoal = spend - goal
+//   console.log('graphTotalMinusGoal', this.graphTotalMinusGoal)
+//   console.log('spend', spend)
+//   console.log('data', data)
+
+//   if ( this.graphTotalMinusGoal - data <= 0) {
+//       console.log('spend-data', this.graphTotalMinusGoal - data)
+//       this.overage = this.graphTotalMinusGoal  - data
+//       console.log('overage', this.overage)
+
+//       this.reduceGoal = (parseFloat(goal) + parseFloat(this.overage));
+//       console.log('reduceGoal', this.reduceGoal)
+//       goal = this.reduceGoal
+//       console.log('goal after reduceGoal', this.reduceGoal)
+//       data = (parseFloat(data) + parseFloat(this.overage))
+//       console.log('data after reduce', data)
+      
+//     }
+// }
+
 ChartView.prototype.render = function (data, goal, spend) {
 
     // console.log('xxxxxxxxxxxx', goal)
@@ -58,10 +82,9 @@ ChartView.prototype.render = function (data, goal, spend) {
         data = (parseFloat(data) + parseFloat(this.overage))
         //console.log('reduceGoal', this.reduceGoal)
       }
+    //this.graphNumberNonLogic(data, goal, spend);
 
     var chart = new CanvasJS.Chart("chartContainer", {
-
-       
 
         animationEnabled: true,
         title: {
@@ -88,5 +111,7 @@ ChartView.prototype.render = function (data, goal, spend) {
     chart.render();
 
     }
+
+    
 
     module.exports = ChartView
