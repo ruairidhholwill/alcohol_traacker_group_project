@@ -2,6 +2,7 @@
 <head>
     <meta charset="UTF-8"></meta>
     <script src='js/bundle.js'></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>Booze Tracker</title>
 </head>
@@ -46,7 +47,7 @@
    <div id="form-div">
    <form id="drink-form">
     <div id="drink-type-selection">
-        <input type="radio" id="beer" name="drink" value="beer" checked> Beer
+        <input type="radio" id="beer" name="drink" value="beer" checked required> Beer
         <input type="radio" id="wine" name="drink" value="wine"> Wine
         <input type="radio" id="spirits" name="drink" value="spirits"> Spirits
     </div>
@@ -55,7 +56,7 @@
     </div>
     <div id="price-input">
         <label for="price-input">Price:</label>
-        <input id="pounds" type="number" min='0'>
+        <input id="pounds" type="number" min='0' value=0>
         <input id="pence" type="number" min='0' max='99'>
     </div>
 
@@ -75,8 +76,12 @@
 
       </table>
     </div>
-    <div id="chart-view"></div>
+    <div id="chart-view" style="width:100%; height:400px; display:none"></div>
    </div>
+
+
+
+
 
    <div id="tracker-details">
     <div id="goal">Goal:</div>

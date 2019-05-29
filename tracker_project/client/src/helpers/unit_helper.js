@@ -7,7 +7,7 @@ const UnitHelper = function (drinkType, drinkSize) {
 
 UnitHelper.prototype.sizeToUnits = function () {
   if (this.drinkType === 'beer') {
-    if (this.drinkSize === 'half Pint') {
+    if (this.drinkSize === 'half pint') {
       return 1;
     } else if (this.drinkSize === 'pint') {
       return 2;

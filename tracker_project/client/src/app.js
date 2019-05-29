@@ -8,6 +8,7 @@ const ChartView = require('../src/views/chart_view.js')
 const Charts = require('./models/charts.js')
 const ResultsView = require('./views/result_view.js')
 const Results = require('./models/result.js')
+const DailyChart = require('./views/daily_info_chart_view.js')
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('JavaScript Loaded')
@@ -32,12 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 
-
     const settingsButtonElement = document.querySelector('#settings-btn');
-
-
-
-
 
     const settingsContainer = document.querySelector('#settings-form');
     const settingsView = new SettingsView(settingsButtonElement, settingsContainer);
@@ -66,5 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const charts = new Charts();
     charts.bindEvents();
 
+    const dailyChartContainer = document.querySelector('div#container')
+    const dailyChart = new DailyChart(dailyChartContainer);
+    dailyChart.bindEvents();
 
 })
