@@ -9,10 +9,13 @@
 <body>
 
 
-    <!-- <h3 id="settings-header">settings</h3> -->
-    <button id="settings-btn">Settings</button>
 
-    <div id="settings">
+    <!-- <h3 id="settings-header">settings</h3> -->
+    <div id="settings-logo-toggle">
+      <input type="button" id="settings-logo-toggle" value="settings">
+    </div>
+
+    <div id="settings" style="display:none">
       <form id="settings-form">
         <p>how much are you spending on booze?</p>
         <input type="number" id="pounds_spending">
@@ -22,40 +25,26 @@
       </form>
     </div>
 
-    <!-- <script>
-    function myFunction() {
-      var x = document.getElementById("settings");
-      if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
-    }
-
-    </script>-->
+    <div id="logo">
+      <h1>BOOZE TRACKER</h1>
+    </div>
 
 
-
-
-
-
-
-
-    <div id="logo"></div>
-
-
-   <div id="form-div">
-   <form id="drink-form">
+<div id="form-div">
+  <form id="drink-form">
     <div id="drink-type-selection">
-        <input type="radio" id="beer" name="drink" value="beer" checked required> Beer
-        <input type="radio" id="wine" name="drink" value="wine"> Wine
-        <input type="radio" id="spirits" name="drink" value="spirits"> Spirits
+        <input type="radio" id="beer" name="drink" value="beer" data-value="beer" checked required>
+        <label for="beer" id="radio-label" data-value="beer" >Beer</label>
+        <input type="radio" id="wine" name="drink" value="wine" data-value="wine">
+        <label for="wine" id="radio-label" data-value="wine">Wine</label>
+        <input type="radio" id="spirits" name="drink" value="spirits" data-value="spirits">
+        <label for="spirits" id="radio-label" data-value="spirits">Spirit</label>
     </div>
     <div id="size-selection">
 
     </div>
     <div id="price-input">
-        <label for="price-input">Price:</label>
+        <label class="price-input" for="price-input">Price:</label>
         <input id="pounds" type="number" min='0' value=0>
         <input id="pence" type="number" min='0' max='99'>
     </div>
@@ -72,9 +61,13 @@
       <input type="checkbox" id="list-chart-toggle">
     </div>
     <div id="list-view">
-      <table id="list-table">
 
+      <table id="list-table">
+        <tbody>
+
+        </tbody>
       </table>
+
     </div>
     <div id="chart-view" style="width:100%; height:400px; display:none"></div>
     

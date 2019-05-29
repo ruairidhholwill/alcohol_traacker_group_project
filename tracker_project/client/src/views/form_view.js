@@ -32,10 +32,10 @@ FormView.prototype.bindEvents = function () {
       } else {
         newDrink = this.createDrinkInfo(event.target);
         PubSub.publish('BoozeFormView:booze-submitted', newDrink);
-        // console.log(newDrink)
         event.target.reset()//empties the text fields.
         // const unit = new UnitHelper(newDrink.drinkType, newDrink.drinkSize);
         // console.log(unit.sizeToUnits())
+        this.renderDrinkSizeDefaults('beer')
       }
 
 
@@ -49,6 +49,7 @@ FormView.prototype.bindEvents = function () {
       // console.log(this.updateMode)
       // console.log(this.drinkUpdateID)
     })
+
 }
 
 FormView.prototype.renderDrinkSizeDefaults = function (drinkType) {
@@ -62,15 +63,19 @@ FormView.prototype.createSizeSelectors = function (sizes) {
     this.sizeContainer.innerHTML = '';
     sizes.forEach((size) => {
         const sizeLabel = document.createElement('label');
-        sizeLabel.innerHTML = size;
+        sizeLabel.innerHTML = size.charAt(0).toUpperCase() + size.slice(1);
+        sizeLabel.htmlFor = size;
         const sizeSelect = document.createElement('input');
         sizeSelect.required = true;
+        sizeSelect.checked = true;
         sizeSelect.type = 'radio';
         sizeSelect.name = 'size';
         sizeSelect.id = size;
         sizeSelect.value = size;
+
         this.sizeContainer.appendChild(sizeSelect)
         this.sizeContainer.appendChild(sizeLabel)
+
     })
 }
 
@@ -98,6 +103,7 @@ FormView.prototype.createDrinkInfo = function (form) {
   // console.log('x', drinkUnits)
   drinkUnits = drinkUnits.sizeToUnits();
   // console.log('y', drinkUnits)
+
 
   const newDrink = {
     drinkType: form.drink.value,

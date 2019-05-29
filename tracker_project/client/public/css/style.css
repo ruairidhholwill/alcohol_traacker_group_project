@@ -1,9 +1,63 @@
+* {
+  margin: 0;
+}
+
+body {
+  width: 80%;
+  height: 800px;
+  margin: auto;
+  overflow: hidden;
+}
+
 #settings {
+  /* display: flex;
+  flex-direction: row; */
+  /* flex-wrap: nowrap; */
+  /* justify-content: space-around; */
   width: 100%;
-  padding: 50px 0;
+  height: 150px;
+  /* padding: 50px 0; */
   text-align: center;
-  background-color: lightblue;
-  margin-top: 20px;
+  background-color: #7E57C2;
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+  /* position: relative; */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  /* font-size: 24px; */
+  /* align-items: center;
+  justify-content: center; */
+}
+
+/* #settings, p {
+ color: #fff;
+ font-size: 28px;
+ font-weight: 400;
+ line-height: var(--lineHeightSm);
+ text-align: center;
+ text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+} */
+
+#logo {
+  height: 150px;
+  background-color: #7E57C2;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+#logo h1 {
+  padding: 50px;
+  text-align: center;
+}
+
+#pounds_spending, #pounds_saving {
+  display: block;
+  /* padding: 20px 20px; */
+  color: #343434;
+  width: 20%;
+  height: 30px;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: inherit;
+  border-radius: 0.4rem;
 }
 
 #tracker-details {
@@ -20,15 +74,155 @@
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   font-size: 24px;
 }
-/* #tracker-details {
-  width: 100%;
-  padding: 50px 0;
-  text-align: center;
-  background-color: lightblue;
-  margin-top: 20px;
-  position: relative;
-  display: flex;
-  justify-content: space-around;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  font-size: 24px;
+
+input[type=radio] {
+  position: absolute;
+  visibility: hidden;
+  /* display: none; */
+}
+
+label {
+  color: #A1AEBD;
+  display: inline-block;
+  cursor: pointer;
+  /* font-weight: bold; */
+  padding: 20px 60px;
+  font-size: 20px;
+}
+
+input[type=radio]:checked + label{
+  color: white;
+  background: #A1AEBD;
+}
+
+/* label + input[type=radio] + label {
+  border-left: solid 3px #675F6B;
 } */
+
+#drink-type-selection {
+  border: solid 3px #A1AEBD;
+  display: inline-block;
+  justify-content: space-around;
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin: 20px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+#size-selection {
+  border: solid 3px #A1AEBD;
+  display: inline-block;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 20px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+#submit-btn {
+  background-color: #A1AEBD;
+  border: solid 3px #A1AEBD;
+  border-radius: 50px;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  /* display: block; */
+  font-size: 16px;
+  /* margin: 4px 2px; */
+  cursor: pointer;
+  width:400px;
+  margin-left: 275px;
+}
+
+#radio-label {
+  width: 70px;
+  height:20px;
+  margin-left: auto;
+  margin-right: auto;
+  /* margin-bottom: 10px; */
+}
+
+#drink-form {
+  /* width: 75%; */
+  margin-right: auto;
+  margin-left: auto;
+  /* justify-content: space-around; */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#settings-logo-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price-input {
+  display: contents;
+  font-size: 30px;
+}
+
+#pounds, #pence {
+  color: #343434;
+  width: 20%;
+  height: 30px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  border-radius: 0.4rem;
+}
+
+input[type=submit] {
+  border-radius: 20px;
+  border: solid 3px #A1AEBD;
+	display: block;
+	cursor:pointer;
+	color: #A1AEBD;
+	font-weight:bold;
+	padding:13px 32px;
+	/* text-shadow:0px 1px 0px #3d768a; */
+  margin: 20px;
+}
+
+input[type=submit]:hover {
+  /* background-color: #A1AEBD; */
+  color: white;
+  background: #A1AEBD;
+}
+
+table {
+  border-collapse: collapse;
+  width: 700px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  width: 150px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+tr {
+  display: flex;
+  justify-content: space-between;
+}
+
+#list-view {
+  height: 320px;
+  max-height: 320px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: scroll;
+}

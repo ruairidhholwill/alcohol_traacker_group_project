@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     resultsView.bindEvents();
 
 
-    const chartContainer = document.querySelector('div#chart-view')
-    const chartView  = new ChartView(chartContainer);
-    chartView.bindEvents();
+    // const chartContainer = document.querySelector('div#chart-view')
+    // const chartView  = new ChartView(chartContainer);
+    // chartView.bindEvents();
 
     const unitChartContainer = document.querySelector('div#unit-chart-view')
     const unitChartView = new UnitChart(unitChartContainer);
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     settings.getData();
 
 
-    
+
 
     const settingsButtonElement = document.querySelector('#settings-btn');
 
