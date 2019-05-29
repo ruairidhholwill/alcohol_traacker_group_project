@@ -1,10 +1,11 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-const DailyChart = function (container){
+const DailyChart = function (container) {
   this.container = container;
   this.dates = []
   this.pounds = []
   this.units = []
+}
 
   // subdcribe to chart model
   DailyChart.prototype.bindEvents = function () {
@@ -44,7 +45,6 @@ const DailyChart = function (container){
        });
   };
 
-}
 
 
 
