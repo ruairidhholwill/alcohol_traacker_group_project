@@ -32,10 +32,10 @@ FormView.prototype.bindEvents = function () {
       } else {
         newDrink = this.createDrinkInfo(event.target);
         PubSub.publish('BoozeFormView:booze-submitted', newDrink);
-        // console.log(newDrink)
         event.target.reset()//empties the text fields.
         // const unit = new UnitHelper(newDrink.drinkType, newDrink.drinkSize);
         // console.log(unit.sizeToUnits())
+        this.renderDrinkSizeDefaults('beer')
       }
 
 
