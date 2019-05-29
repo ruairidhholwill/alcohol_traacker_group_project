@@ -44,9 +44,8 @@ SettingsView.prototype.toggleLogoSettings = function () {
 // };
 SettingsView.prototype.hideSettingsView = function () {
   const element = document.getElementById("settings");
-  setTimeout(function() {
-    element.style.display = "none";
-  }, 100);
+  element.style.display = "none";
+
   document.getElementById('logo').style.display = 'block';
 };
 
