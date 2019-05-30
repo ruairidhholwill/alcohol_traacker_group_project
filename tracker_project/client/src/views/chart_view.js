@@ -66,7 +66,7 @@ ChartView.prototype.render = function (data, goal, spend) {
         },
         data: [{
             type: "pie",
-            startAngle: -72,
+            startAngle: 180,
             yValueFormatString: "\"£\"##0.00",
             indexLabel: "{label} {y}",
             

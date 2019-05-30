@@ -18,7 +18,7 @@ UnitChart.prototype.bindEvents = function(){
 
 UnitChart.prototype.changeSegmentColour = function(){
     if (units <= 15){
-        this.colour = "green"
+        this.colour = "#96E082"
     }
     else if(units > 15 && units < 35){
         this.colour = "orange"
@@ -42,7 +42,7 @@ UnitChart.prototype.render = function(units){
 
         animationEnabled: true,
         title: {
-            text: "Alcohol Unit Tracker",
+            text: "Monthly Unit Allowance",
             fontFamily: "Roboto"
                     
         },
@@ -54,7 +54,7 @@ UnitChart.prototype.render = function(units){
 
             dataPoints: [
                 {label:"Consumed alcohol units", y: `${units}`,  color: `${this.colour}`},
-                {y:56, label:`${this.statement}`,   color: "beige"}
+                {y:56 - `${units}`,   color: "beige"}
                
             ]
         }]
