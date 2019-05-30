@@ -10,9 +10,10 @@ const DailyChart = function (container) {
   // subdcribe to chart model
   DailyChart.prototype.bindEvents = function () {
     PubSub.subscribe('Charts:chart-data-ready', (event) => {
-      dates = event.detail.dates;
-      pounds = event.detail.pounds;
-      units = event.detail.units;
+      const dates = event.detail.dates;
+      const pounds = event.detail.pounds;
+      const units = event.detail.units;
+      this.renderChart(dates, pounds, units);
       PubSub.subscribe('DrinksListView:toggle-check', () => {
         this.renderChart(dates, pounds, units);
       })
