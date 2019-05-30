@@ -1,9 +1,8 @@
-use tracker;
+use tracker
 
-db.dropDatabase();
+db.dropDatabase()
 
-db.booze.insertMany([
-  {
+db.booze.insertMany([{
     drinkType: 'wine',
     drinkSize: 'small',
     drinkUnits: 1.5,
@@ -79,10 +78,7 @@ db.booze.insertMany([
     drinkUnits: 1,
     price: '4.50',
     date: 'Thu May 30 2019'
-  }
-
-
-])
+  }])
 
 db.settings.insertOne(
   {
