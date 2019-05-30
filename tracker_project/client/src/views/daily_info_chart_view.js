@@ -5,7 +5,7 @@ const DailyChart = function (container) {
   this.dates = []
   this.pounds = []
   this.units = []
-}
+};
 
   // subdcribe to chart model
   DailyChart.prototype.bindEvents = function () {
@@ -22,32 +22,28 @@ const DailyChart = function (container) {
 
   DailyChart.prototype.renderChart = function (dates, pounds, units) {
     Highcharts.chart('chart-view', {
-           chart: {
-               type: 'column'
-           },
-           title: {
-               text: 'Spending / Units Intake'
-           },
-           xAxis: {
-               categories: dates
-           },
-           yAxis: {
-               title: {
-                   text: '£ / Units'
-               }
-           },
-           series: [{
-               name: 'Pounds',
-               data: pounds
-           }, {
-               name: 'Units',
-               data: units
-           }]
-       });
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Spending / Units Intake'
+      },
+      xAxis: {
+        categories: dates
+      },
+      yAxis: {
+        title: {
+          text: '£ / Units'
+        }
+      },
+      series: [{
+        name: 'Pounds',
+        data: pounds
+      }, {
+        name: 'Units',
+        data: units
+      }]
+    });
   };
-
-
-
-
 
 module.exports = DailyChart;

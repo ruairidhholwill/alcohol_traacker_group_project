@@ -1,35 +1,31 @@
-//here we will display all the details in graphics.
-const PubSub = require('../helpers/pub_sub.js')
-const RequestHelper = require('../helpers/request_helper.js')
+const PubSub = require('../helpers/pub_sub.js');
+const RequestHelper = require('../helpers/request_helper.js');
 
 const ChartView = function(container, data){
-    this.container = container 
-    this.goal = 0
-    this.calcSpend = 0
-    this.currentSpend = 0
-    this.graphTotalMinusGoal = 0
-    this.overage = 0
-    this.reduceGoal = 0
-}
+  this.container = container
+  this.goal = 0
+  this.calcSpend = 0
+  this.currentSpend = 0
+  this.graphTotalMinusGoal = 0
+  this.overage = 0
+  this.reduceGoal = 0
+};
 
+ChartView.prototype.bindEvents = function () {
 
+  PubSub.subscribe('Results:saving-goal', (event) => {
+    this.goal = event.detail
+  })
 
-ChartView.prototype.bindEvents = function(){
-
-    PubSub.subscribe('Results:saving-goal', (event)=>{
-        this.goal = event.detail
-    })
-
-    PubSub.subscribe('Results:current-spend-amount', (event)=>{
+  PubSub.subscribe('Results:current-spend-amount', (event) => {
     this.currentSpend = event.detail
-    })
+  })
 
-    PubSub.subscribe('Results:total-spent-calculated', (event)=>{
-        this.calcSpend = event.detail
-        this.render(this.calcSpend, this.goal, this.currentSpend)
-    })
-}
-
+  PubSub.subscribe('Results:total-spent-calculated', (event) => {
+    this.calcSpend = event.detail
+    this.render(this.calcSpend, this.goal, this.currentSpend)
+  })
+};
 
 ////////CIRCULAR CHART/////////////////////////////////////////////////////////////
 
@@ -77,14 +73,11 @@ ChartView.prototype.render = function (data, goal, spend) {
                
                 {y: `${formattedNumbers.data}`, label: "Current spend", color: "#7CB5EC"},
                 {y: ( `${this.graphTotalMinusGoal}`- `${formattedNumbers.data}`), label: "Remaining to spend", color: "#D5EDEC"}
-
             ]
         }]
-    });
-    chart.render();
-
-    }
-
+      });
+      chart.render();
+    };
     
+    module.exports = ChartView;
 
-    module.exports = ChartView

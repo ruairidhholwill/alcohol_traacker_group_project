@@ -9,12 +9,11 @@ const UnitChart = function(container){
 
 
 UnitChart.prototype.bindEvents = function(){
-    PubSub.subscribe('Results:total-units-calculated', (event)=>{
-        console.log('units passed', event.detail)
-        units = event.detail
-        this.render(units);
-    })
-}
+  PubSub.subscribe('Results:total-units-calculated', (event)=>{
+    units = event.detail
+    this.render(units);
+  })
+};
 
 UnitChart.prototype.changeSegmentColour = function(){
     if (units <= 15){
@@ -33,26 +32,23 @@ UnitChart.prototype.changeSegmentColour = function(){
 
 UnitChart.prototype.render = function(units){
 
+  this.changeSegmentColour();
 
-    this.changeSegmentColour();
+  var chart = new CanvasJS.Chart("unitChartContainer", {
 
-    console.log("inside unit function",units)
+    animationEnabled: true,
+    title: {
+        text: "Monthly Unit Allowance",
+        fontFamily: "Roboto",
 
-    var chart = new CanvasJS.Chart("unitChartContainer", {
+    },
+    data: [{
+      type: "pie",
+      startAngle: -90,
+      indexLabel: "{label} {y}",
+ 
 
-        animationEnabled: true,
-        title: {
-            text: "Monthly Unit Allowance",
-            fontFamily: "Roboto"
-                    
-        },
-        data: [{
-            type: "pie",
-            startAngle: -90,
-            indexLabel: "{label} {y}",
-            
-
-            dataPoints: [
+      dataPoints: [
                 {label:"Consumed alcohol units", y: `${units}`,  color: `${this.colour}`},
                 {y:56 - `${units}`,   color: "beige"}
                
@@ -61,6 +57,7 @@ UnitChart.prototype.render = function(units){
     });
     chart.render()
 
-}
+
+};
 
 module.exports = UnitChart;
